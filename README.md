@@ -7,6 +7,6 @@ Consumes Madden Companion Exporter Stats
 - Publish local database by double clicking the data/CMFStats.Database.publish.xml file in Visual Studio
 
 # How To Use
--Run application > Register a user > go to My Leagues > Create League 
--Follow the Help page to Export data and Sync data 
+- Run application > Register a user > go to My Leagues > Create League 
+- Follow the Help page to Export data and Sync data 
 
