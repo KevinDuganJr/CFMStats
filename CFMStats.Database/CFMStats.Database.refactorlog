@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d62ca28d-5129-4a56-86f6-b9b1a3944fbf" ChangeDateTime="08/14/2019 22:28:42">
+    <Property Name="ElementName" Value="[dbo].[tblPlayer].[breakSackRating ]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="breakSackRating" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d3701b0b-ab4e-4045-876c-5b237db2d3d2" ChangeDateTime="08/14/2019 22:29:10">
+    <Property Name="ElementName" Value="[dbo].[tblPlayer].[passBlockPowerRating ]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="passBlockPowerRating" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fee191a2-7846-4f0c-911b-0a4429d3c362" ChangeDateTime="08/14/2019 22:29:13">
+    <Property Name="ElementName" Value="[dbo].[tblPlayer].[passBlockFinesseRating ]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="passBlockFinesseRating" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a96ebd4f-1237-453c-bb87-b18bde060208" ChangeDateTime="08/14/2019 22:29:17">
+    <Property Name="ElementName" Value="[dbo].[tblPlayer].[leadBlockRating ]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="leadBlockRating" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="19ebe242-7627-4bc7-b4d1-b0b281b56374" ChangeDateTime="08/14/2019 22:29:21">
+    <Property Name="ElementName" Value="[dbo].[tblPlayer].[breakTackleRating ]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="breakTackleRating" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5f5cb56e-5e0b-4ac6-af0b-3dddb7024a82" ChangeDateTime="08/24/2019 21:47:09">
+    <Property Name="ElementName" Value="[dbo].[tblInjury].[InjuryName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblInjury]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InjuryNames" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="24e58b30-ebbc-4442-be2e-f64954cde141" ChangeDateTime="08/24/2019 21:47:19">
+    <Property Name="ElementName" Value="[dbo].[tblInjury].[InjuryNames]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblInjury]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InjuryName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9f37364b-c7bb-45d8-8082-fdee7224dea6" ChangeDateTime="11/20/2019 02:07:53">
+    <Property Name="ElementName" Value="[dbo].[tblAbilities].[signatureActivationDescription]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblAbilities]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SignatureActivationDescription" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="efdd426d-3d75-40c9-a530-6168a81326d1" ChangeDateTime="03/02/2020 17:23:04">
+    <Property Name="ElementName" Value="[dbo].[tblPlayersDrafted].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayersDrafted]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PlayerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4466aa67-e489-4277-8ff2-1e7dbb28fd8d" ChangeDateTime="03/02/2020 17:23:48">
+    <Property Name="ElementName" Value="[dbo].[tblPlayersDrafted].[Team]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayersDrafted]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="68811ba6-b77e-4226-8c80-9a97c5dbaead" ChangeDateTime="03/02/2020 17:23:51">
+    <Property Name="ElementName" Value="[dbo].[tblPlayersDrafted].[TeamID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayersDrafted]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fbbb2e57-9ba6-4355-8288-781a9908f300" ChangeDateTime="03/02/2020 17:28:21">
+    <Property Name="ElementName" Value="[dbo].[tblPlayersDrafted].[Agility]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPlayersDrafted]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AgilityRating" />
+  </Operation>
+</Operations>

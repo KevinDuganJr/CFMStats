@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[tblStatsReceiving] (
+    [ID]               INT          IDENTITY (1, 1) NOT NULL,
+    [leagueId]         INT          NOT NULL,
+    [fullName]         VARCHAR (50) NULL,
+    [statId]           INT          NOT NULL,
+    [rosterId]         INT          NOT NULL,
+    [teamId]           INT          NOT NULL,
+    [scheduleId]       INT          NOT NULL,
+    [seasonIndex]      INT          NOT NULL,
+    [weekIndex]        INT          NOT NULL,
+    [stageIndex]       INT          NOT NULL,
+    [lastUpdatedOn]    DATETIME     NOT NULL,
+    [recCatchPct]      VARCHAR (10) NOT NULL,
+    [recCatches]       INT          NOT NULL,
+    [recDrops]         INT          NOT NULL,
+    [recLongest]       INT          NOT NULL,
+    [recPts]           INT          NOT NULL,
+    [recTDs]           INT          NOT NULL,
+    [recToPct]         INT          NOT NULL,
+    [recYacPerCatch]   VARCHAR (10) NOT NULL,
+    [recYds]           INT          NOT NULL,
+    [recYdsAfterCatch] INT          NOT NULL,
+    [recYdsPerCatch]   VARCHAR (10) NOT NULL,
+    [recYdsPerGame]    VARCHAR (10) NOT NULL,
+    [playerId]         INT          DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_tblStatsReceiving_1] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

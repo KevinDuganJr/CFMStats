@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[tblStatsRushing] (
+    [ID]                  INT          IDENTITY (1, 1) NOT NULL,
+    [leagueId]            INT          NOT NULL,
+    [statId]              INT          NOT NULL,
+    [rosterId]            INT          NOT NULL,
+    [teamId]              INT          NOT NULL,
+    [scheduleId]          INT          NOT NULL,
+    [seasonIndex]         INT          NOT NULL,
+    [weekIndex]           INT          NOT NULL,
+    [stageIndex]          INT          NOT NULL,
+    [lastUpdatedOn]       DATETIME     NULL,
+    [fullName]            VARCHAR (50) NOT NULL,
+    [rush20PlusYds]       INT          NOT NULL,
+    [rushAtt]             INT          NOT NULL,
+    [rushBrokenTackles]   INT          NOT NULL,
+    [rushFum]             INT          NOT NULL,
+    [rushLongest]         INT          NOT NULL,
+    [rushPts]             INT          NOT NULL,
+    [rushTDs]             INT          NOT NULL,
+    [rushYds]             INT          NOT NULL,
+    [rushYdsAfterContact] INT          NOT NULL,
+    [playerId]            INT          DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_tblStatsRushing] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

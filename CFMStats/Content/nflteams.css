@@ -1,0 +1,342 @@
+﻿.cThunderbirds {
+    background-image: url(/images/team/thunderbirds.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cBeats {
+    background-image: url(/images/team/beats.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cCelticTigers {
+    background-image: url(/images/team/celtictigers.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cDiablos {
+    background-image: url(/images/team/diablos.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cRiverHogs {
+    background-image: url(/images/team/riverhogs.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cBats {
+    background-image: url(/images/team/Bats.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cBlackKnights {
+    background-image: url(/images/team/BlackKnights.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cShamrocks {
+    background-image: url(/images/team/Shamrocks.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cHuskies {
+    background-image: url(/images/team/Huskies.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+.cAftershocks {
+    background-image: url(/images/team/Aftershocks.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cZFreeAgent {
+    background-image: url(/images/team/NFL.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cFreeAgent {
+    background-image: url(/images/team/NFL.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cBills {
+    background-image: url(/images/team/Bills.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cDolphins {
+    background-image: url(/images/team/Dolphins.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cPatriots {
+    background-image: url(/images/team/Patriots.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cJets {
+    background-image: url(/images/team/Jets.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cRavens {
+    background-image: url(/images/team/Ravens.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cBengals {
+    background-image: url(/images/team/Bengals.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cBrowns {
+    background-image: url(/images/team/Browns.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cSteelers {
+    background-image: url(/images/team/Steelers.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cTexans {
+    background-image: url(/images/team/Texans.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cColts {
+    background-image: url(/images/team/Colts.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cJaguars {
+    background-image: url(/images/team/Jaguars.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cTitans {
+    background-image: url(/images/team/Titans.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cBroncos {
+    background-image: url(/images/team/Broncos.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cChiefs {
+    background-image: url(/images/team/Chiefs.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cChargers {
+    background-image: url(/images/team/Chargers.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cRaiders {
+    background-image: url(/images/team/Raiders.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cCowboys {
+    background-image: url(/images/team/Cowboys.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cGiants {
+    background-image: url(/images/team/Giants.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cEagles {
+    background-image: url(/images/team/Eagles.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cRedskins {
+    background-image: url(/images/team/Redskins.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cBears {
+    background-image: url(/images/team/Bears.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cLions {
+    background-image: url(/images/team/Lions.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cPackers {
+    background-image: url(/images/team/Packers.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cVikings {
+    background-image: url(/images/team/Vikings.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cFalcons {
+    background-image: url(/images/team/Falcons.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cPanthers {
+    background-image: url(/images/team/Panthers.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cSaints {
+    background-image: url(/images/team/Saints.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cBuccaneers {
+    background-image: url(/images/team/Buccaneers.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.c49ers {
+    background-image: url(/images/team/49ers.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cCardinals {
+    background-image: url(/images/team/Cardinals.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cRams {
+    background-image: url(/images/team/Rams.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}
+
+.cSeahawks {
+    background-image: url(/images/team/Seahawks.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 32px;
+}

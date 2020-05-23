@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CFMStats.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{09fc6df6-70a0-4340-920f-4c08cadb69cc}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CFMStats.Database</RootNamespace>
+    <AssemblyName>CFMStats.Database</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <AnsiNulls>False</AnsiNulls>
+    <QuotedIdentifier>False</QuotedIdentifier>
+    <DelayedDurability>DISABLED</DelayedDurability>
+    <AutoCreateStatisticsIncremental>False</AutoCreateStatisticsIncremental>
+    <MemoryOptimizedElevateToSnapshot>False</MemoryOptimizedElevateToSnapshot>
+    <Containment>None</Containment>
+    <IsNestedTriggersOn>True</IsNestedTriggersOn>
+    <IsTransformNoiseWordsOn>False</IsTransformNoiseWordsOn>
+    <TwoDigitYearCutoff>2049</TwoDigitYearCutoff>
+    <NonTransactedFileStreamAccess>OFF</NonTransactedFileStreamAccess>
+    <TargetRecoveryTimePeriod>0</TargetRecoveryTimePeriod>
+    <TargetRecoveryTimeUnit>SECONDS</TargetRecoveryTimeUnit>
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>CHECKSUM</PageVerify>
+    <ServiceBrokerOption>EnableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <SupplementalLoggingOn>False</SupplementalLoggingOn>
+    <CompatibilityMode>120</CompatibilityMode>
+    <AnsiNullDefault>False</AnsiNullDefault>
+    <AnsiPadding>False</AnsiPadding>
+    <AnsiWarnings>False</AnsiWarnings>
+    <ArithAbort>False</ArithAbort>
+    <ConcatNullYieldsNull>False</ConcatNullYieldsNull>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DatabaseState>ONLINE</DatabaseState>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>GLOBAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>SIMPLE</Recovery>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="records\" />
+    <Folder Include="records\Stored Procedures\" />
+    <Folder Include="Security\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\DataLoads" />
+    <Folder Include="Scripts\Shared" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\tblTeamStandings.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblTeamInfo.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblStatsTeam.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblStatsRushing.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblStatsPunting.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblStatsPassing.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblStatsKicking.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblStatsDefense.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblSchedule.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblStatsReceiving.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblInjury.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblPositionGroup.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\AspNetRoles.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\AspNetUserRoles.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\AspNetUsers.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\AspNetUserClaims.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\AspNetUserLogins.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\__MigrationHistory.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblLeagueDefault.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblLeague.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\tblLeagueUserFavorite.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\fn_GetActivePlayerId.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsDefenseByWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsKickingByWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPassingByWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPuntingByWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsReceivingByWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsRushingByWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPassingBySeason_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsRushingBySeason_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsReceivingBySeason_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsDefenseBySeason_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamScheduleSeason_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsKickingBySeason_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPuntingBySeason_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\RosterRetireFix_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\Seasons_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\BoxScore_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamStandings_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PositionGroup_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PlayerProfile_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\FindInjury_Select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsReceiving_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsReceiving_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsDefense_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsDefense_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsKicking_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsKicking_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPassing_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPassing_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsRushing_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsRushing_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\League_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPunting_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsPunting_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\StatsTeam_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamSalary_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamTurnovers_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamPenalty_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamRedZone_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamConversion_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamDefense_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamOffense_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PlayerAbility_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\Schedule_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\LeagueID_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\League_insert.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamInfo_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamStandings_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="records\Stored Procedures\PassingStats.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\LeagueUserFavorite_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\SetPlayersAsRetiredAndFreeAgent.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\LeagueUserFavorite_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\LeagueDefault_update.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\ScheduleWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PlayerTraits_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\LeagueDefault_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="records\Stored Procedures\RushingStats.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="records\Stored Procedures\ReceivingStats.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="records\Stored Procedures\DefensiveStats.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\_ListIndexes.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\ScheduleCurrentWeek_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\BoxScore_Rushing.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\ScheduleId_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\BoxScoreTeamStats_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\BoxScoreStatsDefense_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\TeamInfo_select.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\archive.sql" />
+    <Build Include="Security\Player.sql" />
+    <Build Include="Security\records.sql" />
+    <Build Include="Security\team.sql" />
+    <Build Include="dbo\Stored Procedures\GetLeagueIdByPlayerId.sql" />
+    <None Include="Scripts\Shared\Variables.sql" />
+    <None Include="Scripts\Shared\VersionRequiresUpgrade.sql" />
+    <Build Include="dbo\Tables\__DatabaseVersions.sql" />
+    <Build Include="dbo\Tables\tblAbilities.sql" />
+    <Build Include="dbo\Tables\tblPlayerAbilities.sql" />
+    <Build Include="dbo\Stored Procedures\Abilities_update.sql" />
+    <Build Include="dbo\Stored Procedures\GetPlayerAbilities.sql" />
+    <Build Include="dbo\Tables\tblPlayerGrades.sql" />
+    <Build Include="dbo\Tables\tblPlayerRatings.sql" />
+    <Build Include="dbo\Tables\tblPlayerTraits.sql" />
+    <Build Include="dbo\Tables\tblPlayerContract.sql" />
+    <Build Include="dbo\Tables\tblPlayerProfile.sql" />
+    <Build Include="dbo\Stored Procedures\PlayerRatings_select.sql" />
+    <Build Include="dbo\Stored Procedures\PlayerTraits_update.sql" />
+    <Build Include="dbo\Stored Procedures\PlayerContract_update.sql" />
+    <Build Include="dbo\Stored Procedures\PlayerGrades_update.sql" />
+    <Build Include="dbo\Stored Procedures\PlayerProfile_update.sql" />
+    <None Include="Scripts\Player_PlayerProfile.sql" />
+    <Build Include="dbo\Stored Procedures\PlayerSalary_select.sql" />
+    <Build Include="dbo\Stored Procedures\GetPlayerId.sql" />
+    <None Include="Scripts\BuildDraftHistory.sql" />
+    <Build Include="dbo\Tables\tblRosterStrategyTypes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CFMStats.Database.publish.xml" />
+    <None Include="database-publish.bat" />
+    <PostDeploy Include="Scripts\DataLoads\Index.sql" />
+    <None Include="Scripts\DataLoads\Injuries.sql" />
+    <None Include="Scripts\DataLoads\PositionGroups.sql" />
+    <None Include="Scripts\DataLoads\TeamInfo.sql" />
+    <None Include="Scripts\DataLoads\FixSeasonIndex.sql" />
+    <Build Include="dbo\Stored Procedures\PlayerRatings_update.sql" />
+    <None Include="Scripts\Player_PlayerRatings.sql" />
+    <None Include="Scripts\Player_PlayerTraits.sql" />
+    <None Include="Scripts\Player_PlayerGrades.sql" />
+    <None Include="Scripts\Player_PlayerContracts.sql" />
+    <None Include="Scripts\Create_Foreign_Keys.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CFMStats.Database.refactorlog" />
+  </ItemGroup>
+</Project>

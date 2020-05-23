@@ -1,0 +1,198 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    font-size: 13px;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 60px 0 0 0;
+}
+
+/* Wrapping element */
+
+/* Set some basic padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.highRating {
+    color: #3dd83d !important;
+}
+
+.mediumRating {
+}
+
+.lowRating {
+    color: #aeb3b7 !important;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+
+.dl-horizontal dt { white-space: normal; }
+
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] { max-width: 280px; }
+
+footer { text-align: center; }
+
+/* Responsive: Portrait tablets and up */
+
+@media screen and (min-width: 768px) {
+    .jumbotron { margin-top: 20px; }
+
+    .body-content { padding: 0; }
+}
+
+
+.navbar-nav > li > a, .navbar-brand {
+    height: 30px;
+    padding-bottom: 0 !important;
+    padding-top: 5px !important;
+}
+
+.navbar { min-height: 30px !important; }
+
+.navbar-toggle {
+    margin-bottom: 0;
+    margin-top: 7px;
+    padding: 0 0;
+}
+
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    font-size: 1.2em;
+}
+
+
+/* custom bootstrap */
+
+.alert-schedule {
+    background-color: #494e52;
+    border-color: #494e52;
+    color: #ffffff;
+}
+
+.input-xs {
+    border-radius: 3px;
+    font-size: 12px;
+    height: 23px;
+    line-height: 1.5;
+    padding: 1px 5px;
+}
+
+/* my custom stuff  */
+
+.leagueName {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 1px 1px #f1f1f1;
+    vertical-align: middle;
+}
+
+.exportURL {
+    font-family: monospace;
+    font-size: 2em;
+}
+
+.leagueHeader {
+    background-color: rgb(85, 109, 132);
+    color: #ffffff;
+    font-family: Tahoma;
+    font-size: 8pt;
+    height: 17px;
+    text-align: center;
+}
+
+
+.injured {
+    background-image: url(../images/injury.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.psquad {
+    background-image: url(../images/practicesquad.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.isretired { text-decoration: line-through; }
+
+.alert-default {
+    -ms-background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(top, #e2e2e2 0%, #d0d0d0 100%);
+    background-image: -o-linear-gradient(top, #e2e2e2 0%, #d0d0d0 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), to(#d0d0d0));
+    background-image: linear-gradient(to bottom, #e2e2e2 0%, #d0d0d0 100%);
+    background-repeat: repeat-x;
+    border-color: #c3c2c2;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe2e2e2', endColorstr='#ffd0d0d0', GradientType=0);
+}
+
+.centerAlign {
+    margin: auto;
+    width: 50%;
+}
+
+.center {
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.teamScore {
+    color: #ff6a00;
+    font-size: 3.4em;
+    text-decoration: none;
+}
+
+
+/* tablesorter overrides*/
+
+.table-bordered { border: 0px solid #222222; }
+
+.tablesorter-ice { margin: 0; }
+
+.tablesorter-stickyHeader .tablesorter-filter-row { display: none; }
+
+/* tables with rounded corners */
+
+.table-bordered-curved {
+    border: solid 1px #7b7b7b;
+    border-radius: 4px;
+}
+
+.table-bordered-curved thead tr:last-child th,
+.table-bordered-curved thead tr:last-child td { border-bottom: solid 1px #7b7b7b; }
+
+.table-bordered-curved thead tr th,
+.table-bordered-curved thead tr td {
+    border-bottom: 0;
+    border-right: solid 1px #7b7b7b;
+}
+
+.table-bordered-curved thead tr th:last-child,
+.table-bordered-curved thead tr td:last-child { border-right: 0; }
+
+.table-bordered-curved tbody tr:first-child th,
+.table-bordered-curved tbody tr:first-child td { border-top: 0; }
+
+.table-bordered-curved tbody tr td {
+    border-right: solid 1px #7b7b7b;
+    border-top: solid 1px #7b7b7b;
+}
+
+.table-bordered-curved tbody tr td:last-child { border-right: 0; }

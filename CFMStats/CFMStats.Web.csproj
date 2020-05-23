@@ -1,0 +1,954 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{67A77CA1-9D1E-4FB8-9909-83F8F5537518}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CFMStats</RootNamespace>
+    <AssemblyName>CFMStats</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AspNet.ScriptManager.bootstrap, Version=3.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.3.7\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.0.0\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\AddPhoneNumber.aspx" />
+    <Content Include="Account\Confirm.aspx" />
+    <Content Include="Account\Forgot.aspx" />
+    <Content Include="Account\Lockout.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\ManageLogins.aspx" />
+    <Content Include="Account\ManagePassword.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Account\ResetPassword.aspx" />
+    <Content Include="Account\ResetPasswordConfirmation.aspx" />
+    <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
+    <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="android-chrome-192x192.png" />
+    <Content Include="android-chrome-256x256.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="BoxScore.aspx" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\nflteams.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\tablesorter\dragtable.mod.min.css" />
+    <Content Include="Content\tablesorter\filter.formatter.min.css" />
+    <Content Include="Content\tablesorter\images\black-asc.gif" />
+    <Content Include="Content\tablesorter\images\black-desc.gif" />
+    <Content Include="Content\tablesorter\images\black-unsorted.gif" />
+    <Content Include="Content\tablesorter\images\bootstrap-black-unsorted.png" />
+    <Content Include="Content\tablesorter\images\bootstrap-white-unsorted.png" />
+    <Content Include="Content\tablesorter\images\dragtable-handle.png" />
+    <Content Include="Content\tablesorter\images\dragtable-handle.svg" />
+    <Content Include="Content\tablesorter\images\dropbox-asc-hovered.png" />
+    <Content Include="Content\tablesorter\images\dropbox-asc.png" />
+    <Content Include="Content\tablesorter\images\dropbox-desc-hovered.png" />
+    <Content Include="Content\tablesorter\images\dropbox-desc.png" />
+    <Content Include="Content\tablesorter\images\first.png" />
+    <Content Include="Content\tablesorter\images\green-asc.gif" />
+    <Content Include="Content\tablesorter\images\green-desc.gif" />
+    <Content Include="Content\tablesorter\images\green-header.gif" />
+    <Content Include="Content\tablesorter\images\green-unsorted.gif" />
+    <Content Include="Content\tablesorter\images\ice-asc.gif" />
+    <Content Include="Content\tablesorter\images\ice-desc.gif" />
+    <Content Include="Content\tablesorter\images\ice-unsorted.gif" />
+    <Content Include="Content\tablesorter\images\last.png" />
+    <Content Include="Content\tablesorter\images\loading.gif" />
+    <Content Include="Content\tablesorter\images\metro-black-asc.png" />
+    <Content Include="Content\tablesorter\images\metro-black-desc.png" />
+    <Content Include="Content\tablesorter\images\metro-loading.gif" />
+    <Content Include="Content\tablesorter\images\metro-unsorted.png" />
+    <Content Include="Content\tablesorter\images\metro-white-asc.png" />
+    <Content Include="Content\tablesorter\images\metro-white-desc.png" />
+    <Content Include="Content\tablesorter\images\next.png" />
+    <Content Include="Content\tablesorter\images\prev.png" />
+    <Content Include="Content\tablesorter\images\white-asc.gif" />
+    <Content Include="Content\tablesorter\images\white-desc.gif" />
+    <Content Include="Content\tablesorter\images\white-unsorted.gif" />
+    <Content Include="Content\tablesorter\jquery.tablesorter.pager.min.css" />
+    <Content Include="Content\tablesorter\theme.blackice.min.css" />
+    <Content Include="Content\tablesorter\theme.blue.css" />
+    <Content Include="Content\tablesorter\theme.blue.min.css" />
+    <Content Include="Content\tablesorter\theme.bootstrap.min.css" />
+    <Content Include="Content\tablesorter\theme.bootstrap_2.min.css" />
+    <Content Include="Content\tablesorter\theme.dark.min.css" />
+    <Content Include="Content\tablesorter\theme.default.min.css" />
+    <Content Include="Content\tablesorter\theme.dropbox.min.css" />
+    <Content Include="Content\tablesorter\theme.green.min.css" />
+    <Content Include="Content\tablesorter\theme.grey.min.css" />
+    <Content Include="Content\tablesorter\theme.ice.min.css" />
+    <Content Include="Content\tablesorter\theme.jui.min.css" />
+    <Content Include="Content\tablesorter\theme.materialize.min.css" />
+    <Content Include="Content\tablesorter\theme.metro-dark.min.css" />
+    <Content Include="Account\Web.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tablesorter\less\bootstrap.less" />
+    <Content Include="Content\tablesorter\less\metro.less" />
+    <Content Include="Content\tablesorter\less\theme.less" />
+    <Content Include="Controls\Records\ucRecordDefenseStats.ascx" />
+    <Content Include="Controls\Records\ucRecordPassingStats.ascx" />
+    <Content Include="Controls\Records\ucRecordReceivingStats.ascx" />
+    <Content Include="Controls\Records\ucRecordRushingStats.ascx" />
+    <Content Include="Controls\ucDefenseStats.ascx" />
+    <Content Include="Controls\ucDefenseStatsGame.ascx" />
+    <Content Include="Controls\ucDefenseStatsSeason.ascx" />
+    <Content Include="Controls\ucExportDelete.ascx" />
+    <Content Include="Controls\ucKickingStats.ascx" />
+    <Content Include="Controls\ucKickingStatsGame.ascx" />
+    <Content Include="Controls\ucKickingStatsSeason.ascx" />
+    <Content Include="Controls\ucPassingStats.ascx" />
+    <Content Include="Controls\ucPassingStatsGame.ascx" />
+    <Content Include="Controls\ucPassingStatsSeason.ascx" />
+    <Content Include="Controls\ucPuntingStats.ascx" />
+    <Content Include="Controls\ucPuntingStatsGame.ascx" />
+    <Content Include="Controls\ucPuntingStatsSeason.ascx" />
+    <Content Include="Controls\ucReceivingStatsGame.ascx" />
+    <Content Include="Controls\ucReceivingStatsSeason.ascx" />
+    <Content Include="Controls\ucRushingStats.ascx" />
+    <Content Include="Controls\ucRushingStatsGame.ascx" />
+    <Content Include="Controls\ucRushingStatsSeason.ascx" />
+    <Content Include="Controls\ucTeamConversion.ascx" />
+    <Content Include="Controls\ucTeamDefense.ascx" />
+    <Content Include="Controls\ucTeamOffense.ascx" />
+    <Content Include="Controls\ucTeamPenalty.ascx" />
+    <Content Include="Controls\ucTeamRedZone.ascx" />
+    <Content Include="Controls\ucTeamTurnovers.ascx" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="images\Android.png" />
+    <Content Include="images\iOSiTunes.png" />
+    <Content Include="images\Team\aftershocks.png" />
+    <Content Include="images\Team\Bats.png" />
+    <Content Include="images\Team\blackknights.png" />
+    <Content Include="images\Team\celtictigers.png" />
+    <Content Include="images\Team\diablos.png" />
+    <Content Include="images\Team\huskies.png" />
+    <Content Include="images\Team\nfl.png" />
+    <Content Include="images\Team\riverhogs.png" />
+    <Content Include="images\Team\shamrocks.png" />
+    <Content Include="images\uploading.gif" />
+    <Content Include="LeagueSettings.aspx" />
+    <None Include="mail.config" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="PlayerDraft.aspx" />
+    <Content Include="PlayerRecords.aspx" />
+    <Content Include="PlayerSalary.aspx" />
+    <Content Include="Profile.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\wwwroot.pubxml" />
+    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.0.0.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
+    <Content Include="Scripts\jquery.tablesorter.pager.min.js" />
+    <Content Include="Scripts\jquery.tablesorter.widgets.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Sync.aspx" />
+    <Content Include="TeamSchedule.aspx" />
+    <Content Include="TeamStats.aspx" />
+    <Content Include="WeekLeaders.aspx" />
+    <Content Include="app.config" />
+    <None Include="bundleconfig.json" />
+    <Content Include="manifest.json" />
+    <Content Include="db.config" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="images\injury.png" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\Team\49ers.png" />
+    <Content Include="images\Team\bears.png" />
+    <Content Include="images\Team\bengals.png" />
+    <Content Include="images\Team\bills.png" />
+    <Content Include="images\Team\broncos.png" />
+    <Content Include="images\Team\browns.png" />
+    <Content Include="images\Team\buccaneers.png" />
+    <Content Include="images\Team\cardinals.png" />
+    <Content Include="images\Team\chargers.png" />
+    <Content Include="images\Team\chiefs.png" />
+    <Content Include="images\Team\colts.png" />
+    <Content Include="images\Team\cowboys.png" />
+    <Content Include="images\Team\dolphins.png" />
+    <Content Include="images\Team\eagles.png" />
+    <Content Include="images\Team\falcons.png" />
+    <Content Include="images\Team\giants.png" />
+    <Content Include="images\Team\jaguars.png" />
+    <Content Include="images\Team\jets.png" />
+    <Content Include="images\Team\lions.png" />
+    <Content Include="images\Team\packers.png" />
+    <Content Include="images\Team\panthers.png" />
+    <Content Include="images\Team\patriots.png" />
+    <Content Include="images\Team\raiders.png" />
+    <Content Include="images\Team\rams.png" />
+    <Content Include="images\Team\ravens.png" />
+    <Content Include="images\Team\redskins.png" />
+    <Content Include="images\Team\saints.png" />
+    <Content Include="images\Team\seahawks.png" />
+    <Content Include="images\Team\steelers.png" />
+    <Content Include="images\Team\texans.png" />
+    <Content Include="images\Team\titans.png" />
+    <Content Include="images\Team\vikings.png" />
+    <Content Include="Players.aspx" />
+    <Content Include="PlayerStats.aspx" />
+    <Content Include="Schedule.aspx" />
+    <Content Include="Scripts\jquery.stickytableheaders.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Site.Master" />
+    <Content Include="TeamRankings.aspx" />
+    <Content Include="Controls\ucReceivingStats.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AddPhoneNumber.aspx.cs">
+      <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\AddPhoneNumber.aspx.designer.cs">
+      <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Confirm.aspx.cs">
+      <DependentUpon>Confirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Confirm.aspx.designer.cs">
+      <DependentUpon>Confirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Forgot.aspx.cs">
+      <DependentUpon>Forgot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Forgot.aspx.designer.cs">
+      <DependentUpon>Forgot.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Lockout.aspx.cs">
+      <DependentUpon>Lockout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Lockout.aspx.designer.cs">
+      <DependentUpon>Lockout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManageLogins.aspx.cs">
+      <DependentUpon>ManageLogins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageLogins.aspx.designer.cs">
+      <DependentUpon>ManageLogins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManagePassword.aspx.cs">
+      <DependentUpon>ManagePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManagePassword.aspx.designer.cs">
+      <DependentUpon>ManagePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResetPasswordConfirmation.aspx.cs">
+      <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPasswordConfirmation.aspx.designer.cs">
+      <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\TwoFactorAuthenticationSignIn.aspx.cs">
+      <DependentUpon>TwoFactorAuthenticationSignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\TwoFactorAuthenticationSignIn.aspx.designer.cs">
+      <DependentUpon>TwoFactorAuthenticationSignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\VerifyPhoneNumber.aspx.cs">
+      <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
+      <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BoxScore.aspx.cs">
+      <DependentUpon>BoxScore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BoxScore.aspx.designer.cs">
+      <DependentUpon>BoxScore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\BoxScoreTeamStats.cs" />
+    <Compile Include="Classes\DevelopmentTraitService.cs" />
+    <Compile Include="Classes\EmailItem.cs" />
+    <Compile Include="Classes\Helper.cs" />
+    <Compile Include="Classes\JSON\JSONDefenseStats.cs" />
+    <Compile Include="Classes\JSON\JSONFreeAgents.cs" />
+    <Compile Include="Classes\JSON\JSONKickingStats.cs" />
+    <Compile Include="Classes\JSON\JSONPassingStats.cs" />
+    <Compile Include="Classes\JSON\JsonPlayer.cs" />
+    <Compile Include="Classes\JSON\JSONPuntingStats.cs" />
+    <Compile Include="Classes\JSON\JSONReceivingStats.cs" />
+    <Compile Include="Classes\JSON\JSONRushingStats.cs" />
+    <Compile Include="Classes\JSON\JSONSchedule.cs" />
+    <Compile Include="Classes\JSON\JSONTeamStandings.cs" />
+    <Compile Include="Classes\JSON\JSONTeamStats.cs" />
+    <Compile Include="Classes\ScheduleRepository.cs" />
+    <Compile Include="Classes\oSeasons.cs" />
+    <Compile Include="Classes\oStatsKicking.cs" />
+    <Compile Include="Classes\oStatsPassing.cs" />
+    <Compile Include="Classes\oStatsPunting.cs" />
+    <Compile Include="Classes\oStatsReceiving.cs" />
+    <Compile Include="Classes\oRosters.cs" />
+    <Compile Include="Classes\MaddenTeamRankings.cs" />
+    <Compile Include="Classes\JSON\JSONTeamInfo.cs" />
+    <Compile Include="Classes\JSON\JSONRosters.cs" />
+    <Compile Include="Classes\MyFractions.cs" />
+    <Compile Include="Classes\oPlayer.cs" />
+    <Compile Include="Classes\oStatsDefense.cs" />
+    <Compile Include="Classes\oStatsRushing.cs" />
+    <Compile Include="Classes\oStatsTeamStatsInfo.cs" />
+    <Compile Include="Classes\oTeams.cs" />
+    <Compile Include="Classes\oWeeks.cs" />
+    <Compile Include="Classes\StoredProc.cs" />
+    <Compile Include="Controls\Records\ucRecordDefenseStats.ascx.cs">
+      <DependentUpon>ucRecordDefenseStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Records\ucRecordDefenseStats.ascx.designer.cs">
+      <DependentUpon>ucRecordDefenseStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Records\ucRecordPassingStats.ascx.cs">
+      <DependentUpon>ucRecordPassingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Records\ucRecordPassingStats.ascx.designer.cs">
+      <DependentUpon>ucRecordPassingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Records\ucRecordReceivingStats.ascx.cs">
+      <DependentUpon>ucRecordReceivingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Records\ucRecordReceivingStats.ascx.designer.cs">
+      <DependentUpon>ucRecordReceivingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Records\ucRecordRushingStats.ascx.cs">
+      <DependentUpon>ucRecordRushingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Records\ucRecordRushingStats.ascx.designer.cs">
+      <DependentUpon>ucRecordRushingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucDefenseStats.ascx.cs">
+      <DependentUpon>ucDefenseStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucDefenseStats.ascx.designer.cs">
+      <DependentUpon>ucDefenseStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucDefenseStatsGame.ascx.cs">
+      <DependentUpon>ucDefenseStatsGame.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucDefenseStatsGame.ascx.designer.cs">
+      <DependentUpon>ucDefenseStatsGame.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucDefenseStatsSeason.ascx.cs">
+      <DependentUpon>ucDefenseStatsSeason.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucDefenseStatsSeason.ascx.designer.cs">
+      <DependentUpon>ucDefenseStatsSeason.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucExportDelete.ascx.cs">
+      <DependentUpon>ucExportDelete.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucExportDelete.ascx.designer.cs">
+      <DependentUpon>ucExportDelete.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucKickingStats.ascx.cs">
+      <DependentUpon>ucKickingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucKickingStats.ascx.designer.cs">
+      <DependentUpon>ucKickingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucKickingStatsGame.ascx.cs">
+      <DependentUpon>ucKickingStatsGame.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucKickingStatsGame.ascx.designer.cs">
+      <DependentUpon>ucKickingStatsGame.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucKickingStatsSeason.ascx.cs">
+      <DependentUpon>ucKickingStatsSeason.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucKickingStatsSeason.ascx.designer.cs">
+      <DependentUpon>ucKickingStatsSeason.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPassingStats.ascx.cs">
+      <DependentUpon>ucPassingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPassingStats.ascx.designer.cs">
+      <DependentUpon>ucPassingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPassingStatsGame.ascx.cs">
+      <DependentUpon>ucPassingStatsGame.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPassingStatsGame.ascx.designer.cs">
+      <DependentUpon>ucPassingStatsGame.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPassingStatsSeason.ascx.cs">
+      <DependentUpon>ucPassingStatsSeason.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPassingStatsSeason.ascx.designer.cs">
+      <DependentUpon>ucPassingStatsSeason.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPuntingStats.ascx.cs">
+      <DependentUpon>ucPuntingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPuntingStats.ascx.designer.cs">
+      <DependentUpon>ucPuntingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPuntingStatsGame.ascx.cs">
+      <DependentUpon>ucPuntingStatsGame.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPuntingStatsGame.ascx.designer.cs">
+      <DependentUpon>ucPuntingStatsGame.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucPuntingStatsSeason.ascx.cs">
+      <DependentUpon>ucPuntingStatsSeason.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucPuntingStatsSeason.ascx.designer.cs">
+      <DependentUpon>ucPuntingStatsSeason.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucReceivingStatsGame.ascx.cs">
+      <DependentUpon>ucReceivingStatsGame.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucReceivingStatsGame.ascx.designer.cs">
+      <DependentUpon>ucReceivingStatsGame.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucReceivingStatsSeason.ascx.cs">
+      <DependentUpon>ucReceivingStatsSeason.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucReceivingStatsSeason.ascx.designer.cs">
+      <DependentUpon>ucReceivingStatsSeason.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucRushingStats.ascx.cs">
+      <DependentUpon>ucRushingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucRushingStats.ascx.designer.cs">
+      <DependentUpon>ucRushingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucRushingStatsGame.ascx.cs">
+      <DependentUpon>ucRushingStatsGame.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucRushingStatsGame.ascx.designer.cs">
+      <DependentUpon>ucRushingStatsGame.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucRushingStatsSeason.ascx.cs">
+      <DependentUpon>ucRushingStatsSeason.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucRushingStatsSeason.ascx.designer.cs">
+      <DependentUpon>ucRushingStatsSeason.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucTeamConversion.ascx.cs">
+      <DependentUpon>ucTeamConversion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucTeamConversion.ascx.designer.cs">
+      <DependentUpon>ucTeamConversion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucTeamDefense.ascx.cs">
+      <DependentUpon>ucTeamDefense.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucTeamDefense.ascx.designer.cs">
+      <DependentUpon>ucTeamDefense.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucTeamOffense.ascx.cs">
+      <DependentUpon>ucTeamOffense.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucTeamOffense.ascx.designer.cs">
+      <DependentUpon>ucTeamOffense.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucTeamPenalty.ascx.cs">
+      <DependentUpon>ucTeamPenalty.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucTeamPenalty.ascx.designer.cs">
+      <DependentUpon>ucTeamPenalty.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucTeamRedZone.ascx.cs">
+      <DependentUpon>ucTeamRedZone.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucTeamRedZone.ascx.designer.cs">
+      <DependentUpon>ucTeamRedZone.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucTeamTurnovers.ascx.cs">
+      <DependentUpon>ucTeamTurnovers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucTeamTurnovers.ascx.designer.cs">
+      <DependentUpon>ucTeamTurnovers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\PlayerAbility.cs" />
+    <Compile Include="DataContracts\DevelopmentTrait.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LeagueSettings.aspx.cs">
+      <DependentUpon>LeagueSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeagueSettings.aspx.designer.cs">
+      <DependentUpon>LeagueSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PlayerDraft.aspx.cs">
+      <DependentUpon>PlayerDraft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayerDraft.aspx.designer.cs">
+      <DependentUpon>PlayerDraft.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerRecords.aspx.cs">
+      <DependentUpon>PlayerRecords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayerRecords.aspx.designer.cs">
+      <DependentUpon>PlayerRecords.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Players.aspx.cs">
+      <DependentUpon>Players.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Players.aspx.designer.cs">
+      <DependentUpon>Players.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerSalary.aspx.cs">
+      <DependentUpon>PlayerSalary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayerSalary.aspx.designer.cs">
+      <DependentUpon>PlayerSalary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerStats.aspx.cs">
+      <DependentUpon>PlayerStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayerStats.aspx.designer.cs">
+      <DependentUpon>PlayerStats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\PlayerAbilityRepository.cs" />
+    <Compile Include="Schedule.aspx.cs">
+      <DependentUpon>Schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Schedule.aspx.designer.cs">
+      <DependentUpon>Schedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Sync.aspx.cs">
+      <DependentUpon>Sync.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sync.aspx.designer.cs">
+      <DependentUpon>Sync.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TeamRankings.aspx.cs">
+      <DependentUpon>TeamRankings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeamRankings.aspx.designer.cs">
+      <DependentUpon>TeamRankings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucReceivingStats.ascx.cs">
+      <DependentUpon>ucReceivingStats.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ucReceivingStats.ascx.designer.cs">
+      <DependentUpon>ucReceivingStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="TeamSchedule.aspx.cs">
+      <DependentUpon>TeamSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeamSchedule.aspx.designer.cs">
+      <DependentUpon>TeamSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TeamStats.aspx.cs">
+      <DependentUpon>TeamStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeamStats.aspx.designer.cs">
+      <DependentUpon>TeamStats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WeekLeaders.aspx.cs">
+      <DependentUpon>WeekLeaders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WeekLeaders.aspx.designer.cs">
+      <DependentUpon>WeekLeaders.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60977</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60978/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

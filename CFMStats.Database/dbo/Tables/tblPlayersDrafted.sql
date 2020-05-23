@@ -1,0 +1,20 @@
+﻿CREATE TABLE [dbo].[tblPlayerDraftRatings]
+([PlayerId]                  INT NOT NULL PRIMARY KEY, 
+ [LeagueId]                  INT NOT NULL, 
+ [CreatedOn]                 DATETIME2 NOT NULL, 
+ [PositionId]                INT NOT NULL, 
+ [TeamId]                    INT NOT NULL, 
+ [Age]                       INT NOT NULL, 
+ [Year]                      INT NOT NULL, 
+ [Round]                     INT NOT NULL, 
+ [Pick]                      INT NOT NULL, 
+ [DevTrait]                  INT NOT NULL, 
+ [PlayerBestOverallRating]   INT NOT NULL, 
+ [TeamSchemOverallRating]    INT NOT NULL, 
+ [PlayerSchemeOverallRating] INT NOT NULL, 
+ [AwarenessRating]           INT NOT NULL, 
+ [SpeedRating]               INT NOT NULL, 
+ [AccelerationRating]        INT NOT NULL, 
+ [AgilityRating]             INT NOT NULL, 
+ [StrengthRating]            INT NOT NULL
+);

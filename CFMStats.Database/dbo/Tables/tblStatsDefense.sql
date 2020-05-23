@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[tblStatsDefense] (
+    [ID]              INT          IDENTITY (1, 1) NOT NULL,
+    [leagueId]        INT          NOT NULL,
+    [statId]          INT          NOT NULL,
+    [rosterId]        INT          NOT NULL,
+    [teamId]          INT          NOT NULL,
+    [scheduleId]      INT          NOT NULL,
+    [seasonIndex]     INT          NOT NULL,
+    [weekIndex]       INT          NOT NULL,
+    [stageIndex]      INT          NOT NULL,
+    [lastUpdatedOn]   DATETIME     NOT NULL,
+    [fullName]        VARCHAR (50) NOT NULL,
+    [defCatchAllowed] INT          NOT NULL,
+    [defDeflections]  INT          NOT NULL,
+    [defForcedFum]    INT          NOT NULL,
+    [defFumRec]       INT          NOT NULL,
+    [defIntReturnYds] INT          NOT NULL,
+    [defInts]         INT          NOT NULL,
+    [defPts]          INT          NOT NULL,
+    [defSacks]        VARCHAR (10) NOT NULL,
+    [defSafeties]     INT          NOT NULL,
+    [defTDs]          INT          NOT NULL,
+    [defTotalTackles] INT          NOT NULL,
+    [playerId]        INT          DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_tblStatsDefense] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
