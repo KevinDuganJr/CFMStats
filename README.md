@@ -1,5 +1,5 @@
 # CFMStats
-Consumes Madden Companion Exporter Stats
+Consumes Madden Companion App Exporter Stats
 
 # How To Setup
 - Update mail.config with your mail server inforation
