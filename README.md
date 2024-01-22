@@ -1,7 +1,7 @@
 # CFMStats
 Consumes Madden Companion App Exporter Stats
 
-#LIVE DEMO
+#LIVE SITE
 www.CFMStats.com
 
 # How To Setup
