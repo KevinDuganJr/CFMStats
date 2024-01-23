@@ -47,7 +47,7 @@ namespace CFMStats.Classes.JSON
             public int draftRound { get; set; }
             public int dropOpenPassTrait { get; set; }
             public int durabilityGrade { get; set; }
-            public int elusiveRating { get; set; }
+            public int changeOfDirectionRating { get; set; }
             public int experiencePoints { get; set; }
             public int feetInBoundsTrait { get; set; }
             public int fightForYardsTrait { get; set; }

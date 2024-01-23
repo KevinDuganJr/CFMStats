@@ -25,16 +25,16 @@ namespace CFMStats.Account
                 string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
-                EmailItem E = new EmailItem
+                Classes.EmailService E = new Classes.EmailService
                 {
                     Recipient = user.Email,
-                    Subect = $"{"Madden "} - {"Confirm Account"}",
+                    Subject = $"{"CFM Stats "} - {"Confirm Account"}",
                     Message = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>."
                 };
 
                 try
                 {
-                    EmailItem.SendEmail(E);
+                    Classes.EmailService.SendEmail(E);
                 }
                 catch (Exception ex)
                 {

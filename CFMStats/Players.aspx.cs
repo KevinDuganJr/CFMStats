@@ -7,6 +7,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CFMStats.Classes;
+using CFMStats.Services;
 
 namespace CFMStats
 {
@@ -112,7 +113,8 @@ namespace CFMStats
             var traits = new DevelopmentTraitService();
             traits = traits.GetDevelopmentTraits();
 
-
+            var leagueId = Helper.IntegerNull(Request.QueryString["leagueId"]);
+            
             var iPositionGroup = Helper.IntegerNull(ddlPositionGroup.SelectedItem.Value);
 
             tablePlayers.InnerHtml = "";
@@ -123,13 +125,13 @@ namespace CFMStats
             sbTable.Append("<thead>");
             sbTable.Append("<tr>");
 
-            sbTable.Append(string.Format("<th data-sorter='true' class='filter-select' data-placeholder='All'  title='{1}'>{0}</th>", "Team", "Player Team"));
-            sbTable.Append(string.Format("<th data-sorter='true' class='filter-select' data-placeholder='All'  title='{1}'>{0}</th>", "Pos", "Player Position"));
-            sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "Name", "Player Name"));
-            sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "Age", "Age"));
-            sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "Height", "Height"));
+            sbTable.Append(string.Format("<th data-sorter='true' class='filter-select' data-placeholder='All' title='{1}'>{0}</th>", "Team", "Player Team"));
+            sbTable.Append(string.Format("<th data-sorter='true' class='filter-select' data-placeholder='All' title='{1}'>{0}</th>", "Pos", "Player Position"));
+            sbTable.Append(string.Format("<th data-sorter='true' title='{1}'>{0}</th>", "Name", "Player Name"));
+            sbTable.Append(string.Format("<th data-sorter='true' title='{1}'>{0}</th>", "Age", "Age"));
+            sbTable.Append(string.Format("<th data-sorter='true' title='{1}'>{0}</th>", "Height", "Height"));
             sbTable.Append(string.Format("<th data-sorter='true' class='filter-select' data-placeholder='All'  title='{1}'>{0}</th>", "DEV", "Development Status"));
-            sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "Pro", "Years Pro"));
+            sbTable.Append(string.Format("<th data-sorter='true' title='{1}'>{0}</th>", "Pro", "Years Pro"));
 
             sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "OVR", "Overall"));
 
@@ -138,12 +140,13 @@ namespace CFMStats
             sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "ACC", "Acceleration"));
             sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "AGI", "Agility"));
             sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "STR", "Strength"));
+            sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "COD", "Change Of Direction"));
+
 
             switch (iPositionGroup)
             {
                 case 1: // QB
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "THP", "Throw Power"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "THA", "Throw Accuracy"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SAC", "Short Throw Accuracy"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "MAC", "Medium Throw Accuracy"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "DAC", "Deep Throw Accuracy"));
@@ -155,13 +158,11 @@ namespace CFMStats
 
                 case 2: // HB
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "BCV", "Ball Carrier Vision"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "ELU", "Elusiveness"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "TRK", "Trucking"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "BTK", "Break Tackle"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "CAR", "Carrying"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SPM", "Spin Move"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "CTH", "Catching"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RTE", "Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SRR", "Short Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "MRR", "Medium Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "DRR", "Deep Route Running"));
@@ -183,14 +184,9 @@ namespace CFMStats
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SFA", "Stiff Arm"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "BCV", "Ball Carrier Vision"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "TGH", "Toughness"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RTE", "Route Running"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SRR", "Short Route Running"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "MRR", "Medium Route Running"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "DRR", "Deep Route Running"));
                     break;
 
                 case 4: // WR
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RTE", "Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SRR", "Short Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "MRR", "Medium Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "DRR", "Deep Route Running"));
@@ -200,23 +196,16 @@ namespace CFMStats
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SPC", "Spectacular Catch"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "JMP", "Jumping"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "CAR", "Carrying"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "ELU", "Elusiveness"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "BTK", "Break Tackle"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "BCV", "Ball Carrier Vision"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RET", "Kick Return"));
                     break;
 
                 case 5: // TE
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RBK", "Run Block"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RBF", "Run Block Finesse"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RBP", "Run Block Power"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "PBK", "Pass Block"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "PBF", "Pass Block Finesse"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "PBP", "Pass Block Power"));
+                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "LB", "Lead Block"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "CTH", "Catching"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SPC", "Spectacular Catch"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "CIT", "Catch In Traffic"));
-                    sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "RTE", "Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SRR", "Short Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "MRR", "Medium Route Running"));
                     sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "DRR", "Deep Route Running"));
@@ -293,7 +282,7 @@ namespace CFMStats
                     break;
             }
 
-            sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SP", "Skill Points"));
+         //   sbTable.Append(string.Format("<th data-sorter='true'  title='{1}'>{0}</th>", "SP", "Skill Points"));
 
             sbTable.Append("</tr>");
             sbTable.Append("</thead>");
@@ -307,6 +296,8 @@ namespace CFMStats
                 Helper.IntegerNull(ddlDevelopment.SelectedItem.Value),
                 0,
                 chkTwentyFiveAndUnder.Checked,
+                chkOnPracticeSquad.Checked,
+                chkShowOnlyRookies.Checked,
                 Helper.IntegerNull(Session["leagueId"])
                 );
 
@@ -322,8 +313,7 @@ namespace CFMStats
 
                 var cssPlayerStyle = new StringBuilder();
 
-                sbTable.Append(string.Format("<td class='c{0}'><div style='display:none;'>{0}</div></td>",
-                    item.teamName.Replace(" ", string.Empty), item.teamId));
+                sbTable.Append(string.Format("<td class='c{0}'><div style='display:none;'>{0}</div></td>", item.teamName.Replace(" ", string.Empty), item.teamId));
 
                 if (item.injuryType != 97 && item.isActive == false)
                 {
@@ -342,11 +332,12 @@ namespace CFMStats
 
                 sbTable.Append($"<td>{item.position}</td>");
 
-                sbTable.Append($"<td style='text-align:left;' class='{cssPlayerStyle}' ><a  target='_blank' href='/profile?id={item.playerId}'>{item.firstName} {item.lastName}</a></td>");
+                sbTable.Append($"<td style='text-align:left;' class='{cssPlayerStyle}' ><a target='_blank' href='/profile?id={item.playerId}'>{item.firstName} {item.lastName}</a></td>");
 
                 sbTable.Append($"<td>{item.age}</td>");
-                sbTable.Append($"<td data-value={item.height}>{PlayersHeightFromInches(item.height)}</td>");
-                sbTable.Append($"<td><small>{traits[item.devTrait].Name}</small></td>");
+                sbTable.Append($"<td data-sort-value={item.height}>{PlayersHeightFromInches(item.height)}</td>");
+                //sbTable.Append($"<td><small>{traits[item.devTrait].Name}</small></td>");
+                sbTable.Append($"<td class='dev{traits[item.devTrait].Name}'><div style='display:none;'>{traits[item.devTrait].Name}</div></td>");
                 sbTable.Append($"<td>{item.yearsPro}</td>");
 
                 // ratings
@@ -356,12 +347,12 @@ namespace CFMStats
                 sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.accelRating, Helper.RatingLevel(item.accelRating)));
                 sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.agilityRating, Helper.RatingLevel(item.agilityRating)));
                 sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.strengthRating, Helper.RatingLevel(item.strengthRating)));
+                sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.changeOfDirectionRating, Helper.RatingLevel(item.changeOfDirectionRating)));
 
                 switch (iPositionGroup)
                 {
                     case 1: // QB
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.throwPowerRating, Helper.RatingLevel(item.throwPowerRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.throwAccRating, Helper.RatingLevel(item.throwAccRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.throwAccShortRating, Helper.RatingLevel(item.throwAccShortRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.throwAccMidRating, Helper.RatingLevel(item.throwAccMidRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.throwAccDeepRating, Helper.RatingLevel(item.throwAccDeepRating)));
@@ -373,13 +364,11 @@ namespace CFMStats
 
                     case 2: // HB
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.bCVRating, Helper.RatingLevel(item.bCVRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.elusiveRating, Helper.RatingLevel(item.elusiveRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.truckRating, Helper.RatingLevel(item.truckRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.breakTackleRating, Helper.RatingLevel(item.breakTackleRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.carryRating, Helper.RatingLevel(item.carryRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.spinMoveRating, Helper.RatingLevel(item.spinMoveRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.catchRating, Helper.RatingLevel(item.catchRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunRating, Helper.RatingLevel(item.routeRunRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunShortRating, Helper.RatingLevel(item.routeRunShortRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunMedRating, Helper.RatingLevel(item.routeRunMedRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunDeepRating, Helper.RatingLevel(item.routeRunDeepRating)));
@@ -401,15 +390,9 @@ namespace CFMStats
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.stiffArmRating, Helper.RatingLevel(item.stiffArmRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.bCVRating, Helper.RatingLevel(item.bCVRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.toughRating, Helper.RatingLevel(item.toughRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunRating, Helper.RatingLevel(item.routeRunRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunShortRating, Helper.RatingLevel(item.routeRunShortRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunMedRating, Helper.RatingLevel(item.routeRunMedRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunDeepRating, Helper.RatingLevel(item.routeRunDeepRating)));
-
                         break;
 
                     case 4: // WR
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunRating, Helper.RatingLevel(item.routeRunRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunShortRating, Helper.RatingLevel(item.routeRunShortRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunMedRating, Helper.RatingLevel(item.routeRunMedRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunDeepRating, Helper.RatingLevel(item.routeRunDeepRating)));
@@ -418,25 +401,17 @@ namespace CFMStats
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.releaseRating, Helper.RatingLevel(item.releaseRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.specCatchRating, Helper.RatingLevel(item.specCatchRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.jumpRating, Helper.RatingLevel(item.jumpRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.carryRating, Helper.RatingLevel(item.carryRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.elusiveRating, Helper.RatingLevel(item.elusiveRating)));
+                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.carryRating, Helper.RatingLevel(item.carryRating)));                        
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.breakTackleRating, Helper.RatingLevel(item.breakTackleRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.bCVRating, Helper.RatingLevel(item.bCVRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.kickRetRating, Helper.RatingLevel(item.kickRetRating)));
-
                         break;
 
                     case 5: // TE
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.runBlockRating, Helper.RatingLevel(item.runBlockRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.runBlockFinesseRating, Helper.RatingLevel(item.runBlockFinesseRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.runBlockPowerRating, Helper.RatingLevel(item.runBlockPowerRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.passBlockRating, Helper.RatingLevel(item.passBlockRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.passBlockFinesseRating, Helper.RatingLevel(item.passBlockFinesseRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.passBlockPowerRating, Helper.RatingLevel(item.passBlockPowerRating)));
+                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.leadBlockRating, Helper.RatingLevel(item.leadBlockRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.catchRating, Helper.RatingLevel(item.catchRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.specCatchRating, Helper.RatingLevel(item.specCatchRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.cITRating, Helper.RatingLevel(item.cITRating)));
-                        sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunRating, Helper.RatingLevel(item.routeRunRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunShortRating, Helper.RatingLevel(item.routeRunShortRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunMedRating, Helper.RatingLevel(item.routeRunMedRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.routeRunDeepRating, Helper.RatingLevel(item.routeRunDeepRating)));
@@ -445,7 +420,6 @@ namespace CFMStats
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.truckRating, Helper.RatingLevel(item.truckRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.breakTackleRating, Helper.RatingLevel(item.breakTackleRating)));
                         sbTable.Append(string.Format("<td class='{1}'>{0}</td>", item.stiffArmRating, Helper.RatingLevel(item.stiffArmRating)));
-
                         break;
 
                     case 6: // LT LG C RG RT
@@ -514,7 +488,7 @@ namespace CFMStats
                         break;
                 }
 
-                sbTable.Append($"<td><small>{item.skillPoints:n0}</small></td>");
+             //   sbTable.Append($"<td><small>{item.skillPoints:n0}</small></td>");
 
                 sbTable.Append("</tr>");
             }

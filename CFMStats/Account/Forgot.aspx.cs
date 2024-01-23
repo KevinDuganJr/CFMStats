@@ -21,7 +21,7 @@ namespace CFMStats.Account
             {
                 // Validate the user's email address
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                ApplicationUser user = manager.FindByName(Email.Text);
+                var user = manager.FindByName(Email.Text);
                 if (user == null || !manager.IsEmailConfirmed(user.Id))
                 {
                     FailureText.Text = "The user either does not exist or is not confirmed.";
@@ -30,19 +30,21 @@ namespace CFMStats.Account
                 }
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send email with the code and the redirect to reset password page
-                string code = manager.GeneratePasswordResetToken(user.Id);
-                string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
+                var code = manager.GeneratePasswordResetToken(user.Id);
+                var callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
                 manager.SendEmail(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
 
-                EmailItem E = new EmailItem();
-                E.Recipient = user.Email;
-                E.Subect =  string.Format("{0} - {1}", "Madden ", "Reset Password");
-                E.Message = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>.";
+                var emailItem = new Classes.EmailService
+                {
+                    Recipient = user.Email,
+                    Subject = $"{"CFM Stats"} - {"Reset Password"}",
+                    Message = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>."
+                };
 
                 try
                 {
-                    EmailItem.SendEmail(E);
+                    Classes.EmailService.SendEmail(emailItem);
                 }
                 catch (Exception ex)
                 {

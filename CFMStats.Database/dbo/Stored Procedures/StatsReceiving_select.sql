@@ -21,7 +21,7 @@ AS
 	   IF @weekIndex IS NULL
 		  BEGIN
 			 SET @weekIndex = 0;
-			 SET @endWeekindex = 16;
+			 SET @endWeekindex = 17;
 	   END;
 	   ELSE
 		  BEGIN
@@ -61,6 +61,7 @@ AS
 				tblStatsReceiving AS s
 			JOIN tblTeamInfo AS t
 				ON s.teamId = t.teamId
+				AND s.leagueId = t.leagueId
 			LEFT JOIN tblPlayerProfile AS p
 				ON p.playerId = s.playerId
 				   AND p.leagueId = s.leagueId

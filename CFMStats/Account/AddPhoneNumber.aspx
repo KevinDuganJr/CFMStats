@@ -21,7 +21,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button runat="server" OnClick="PhoneNumber_Click"
-                    Text="Submit" CssClass="btn btn-default" />
+                    Text="Submit" Cssclass="btn btn-primary" />
             </div>
         </div>
     </div>

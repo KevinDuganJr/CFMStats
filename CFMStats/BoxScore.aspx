@@ -4,13 +4,13 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         .stat {
-            font-family: cursive;
+            font-family: Calibri;
             font-size: 1.0em;
             text-align: center;
         }
 
         .statName {
-            font-family: fantasy;
+            font-family: Verdana;
             font-size: 1.2em;
             text-align: center;
         }
@@ -32,74 +32,51 @@
 
 
     <div class="row">
-
-        <div class="col-xs-6 col-sm-3">
-            <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control input-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
-        </div>
-
-        <div class="col-xs-6 col-sm-3">
-            <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control input-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
-        </div>
-
-        <div class="col-xs-12 col-sm-3">
-            <div class="visible-xs">
-                <br />
+        <div class="col-md-3 col-xs-12 col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon1">Season</span>
+                <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
             </div>
-            <div class="input-group input-group-sm">
-                <asp:DropDownList ID="ddlWeek" runat="server" CssClass="form-control input-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
-                    <asp:ListItem Text="1" Value="0"></asp:ListItem>
-                    <asp:ListItem Text="2" Value="1"></asp:ListItem>
-                    <asp:ListItem Text="3" Value="2"></asp:ListItem>
-                    <asp:ListItem Text="4" Value="3"></asp:ListItem>
-                    <asp:ListItem Text="5" Value="4"></asp:ListItem>
-                    <asp:ListItem Text="6" Value="5"></asp:ListItem>
-                    <asp:ListItem Text="7" Value="6"></asp:ListItem>
-                    <asp:ListItem Text="8" Value="7"></asp:ListItem>
-                    <asp:ListItem Text="9" Value="8"></asp:ListItem>
-                    <asp:ListItem Text="10" Value="9"></asp:ListItem>
-                    <asp:ListItem Text="11" Value="10"></asp:ListItem>
-                    <asp:ListItem Text="12" Value="11"></asp:ListItem>
-                    <asp:ListItem Text="13" Value="12"></asp:ListItem>
-                    <asp:ListItem Text="14" Value="13"></asp:ListItem>
-                    <asp:ListItem Text="15" Value="14"></asp:ListItem>
-                    <asp:ListItem Text="16" Value="15"></asp:ListItem>
-                    <asp:ListItem Text="17" Value="16"></asp:ListItem>
-                    <asp:ListItem Text="Wild Card" Value="17"></asp:ListItem>
-                    <asp:ListItem Text="Divisional" Value="18"></asp:ListItem>
-                    <asp:ListItem Text="Conference" Value="19"></asp:ListItem>
-                    <asp:ListItem Text="Super Bowl" Value="21"></asp:ListItem>
+        </div>
+
+        <div class="col-md-3 col-xs-12 col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon2">Type</span>
+                <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
+                    <asp:ListItem Text="Regular" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="Pre" Value="0"></asp:ListItem>
                 </asp:DropDownList>
-
-                <span class="input-group-btn">
-                    <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-default" onclick="Previous(this, '<%= ddlWeek.ClientID %>');" id="btnPrevWeek">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </button>
-
-                    <button type="button" class="btn btn-default" name="btnNextStatus" value="Next" onclick="Next(this, '<%= ddlWeek.ClientID %>');" id="btnNextWeek">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button>
-                </span>
-
             </div>
         </div>
 
+        <div class="col-md-3 col-xs-12 col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon3">Week</span>
 
-        <div class="col-xs-12 col-sm-3">
-            <div class="visible-xs">
-                <br />
+                <asp:DropDownList ID="ddlWeek" runat="server" CssClass="form-control form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
+
+                <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-primary" onclick="Previous(this,'<%= ddlWeek.ClientID %>');" id="btnPrevWeek">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <button type="button" class="btn btn-primary" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlWeek.ClientID %>');" id="btnNextWeek">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-            <div class="input-group">
-                <asp:DropDownList ID="ddlLeagueTeams" runat="server" CssClass="form-control input-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
+        </div>
 
-                <span class="input-group-btn">
-                    <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-default btn-sm" onclick="Previous(this, '<%= ddlLeagueTeams.ClientID %>');" id="btnPrevTeam">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </button>
+        <div class="col-md-3 col-xs-12 col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon4">Team</span>
+                <asp:DropDownList ID="ddlLeagueTeams" runat="server" CssClass="form-control form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
 
-                    <button type="button" class="btn btn-default btn-sm" name="btnNextStatus" value="Next" onclick="Next(this, '<%= ddlLeagueTeams.ClientID %>');" id="btnNextTeam">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button>
-                </span>
+                <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-primary btn-sm" onclick="Previous(this, '<%= ddlLeagueTeams.ClientID %>');" id="btnPrevTeam">
+                    <span class="fas fa-chevron-left"></span>
+                </button>
+
+                <button type="button" class="btn btn-primary btn-sm" name="btnNextStatus" value="Next" onclick="Next(this, '<%= ddlLeagueTeams.ClientID %>');" id="btnNextTeam">
+                    <span class="fas fa-chevron-right"></span>
+                </button>
             </div>
         </div>
     </div>
@@ -110,23 +87,11 @@
     <div class="container">
 
         <div id="boxscore" runat="server"></div>
-        
-        <div class="row">
-            <div class="col-md-4">
-                
-            </div>
-            <div class="col-md-8">
-                      
-            </div>
-
-        </div>
-        
-        
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#teamStats" onclick="getTeamStats();" aria-controls="teamStats" role="tab" data-toggle="tab">Team Stats</a></li>
-            <li role="presentation"><a href="#playerStats" onclick="getPlayerStats();" aria-controls="playerStats" role="tab" data-toggle="tab">Player Stats</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link active" href="#teamStats" onclick="getTeamStats();" aria-controls="teamStats" role="tab" data-bs-toggle="tab">Team Stats</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link" href="#playerStats" onclick="getPlayerStats();" aria-controls="playerStats" role="tab" data-bs-toggle="tab">Player Stats</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -155,16 +120,16 @@
                         <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                             <ProgressTemplate>
                                 <div style="text-align: center;">
-                                    <label class="label label-warning">... LOADING ...</label>
-                                    <label class="label label-danger">... LOADING ...</label>
-                                    <label class="label label-success">... LOADING ...</label><br />
+                                    <label class="badge bg-warning">... LOADING ...</label>
+                                    <label class="badge bg-danger">... LOADING ...</label>
+                                    <label class="badge bg-success">... LOADING ...</label><br />
                                 </div>
                                 <br />
                             </ProgressTemplate>
                         </asp:UpdateProgress>
 
 
-                                     <div class="row">
+                        <div class="row">
                             <div class="col-sm-6">
                                 <strong><small>PASSING</small></strong>
                                 <div class="table-responsive">
@@ -254,7 +219,7 @@
                                 </div>
                             </div>
                         </div>
-     
+
 
                     </ContentTemplate>
                     <Triggers>
@@ -264,7 +229,6 @@
                 </asp:UpdatePanel>
             </div>
         </div>
-
     </div>
     <%-- tablesorter --%>
 

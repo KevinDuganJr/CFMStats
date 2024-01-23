@@ -37,7 +37,7 @@
 
         .jersey {
             font-size: 1.2em;
-            color: #100101;
+            color: #b77b3d;
         }
 
         .traitName {
@@ -45,7 +45,7 @@
             font-weight: bold;
         }
 
-        .traitValue {
+        .traitWeekIndex {
             text-align: left;
         }
     </style>
@@ -57,25 +57,27 @@
     <asp:Button ID="btnGetTraits" runat="server" Text="" OnClick="btnGetTraits_Click" Style="display: none;" />
     <asp:Button ID="btnGetStats" runat="server" Text="" OnClick="btnGetStats_Click" Style="display: none;" />
     <asp:Button ID="btnGetWeekStats" runat="server" Text="" OnClick="btnGetWeekStats_Click" Style="display: none;" />
+    
+ 
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" onclick="getStats();" aria-controls="home" role="tab" data-toggle="tab">Season</a></li>
-        <li role="presentation"><a href="#profile" onclick="getWeekStats();" aria-controls="profile" role="tab" data-toggle="tab">Games</a></li>
-        <li role="presentation"><a href="#abilities" onclick="getAbilities();" aria-controls="abilities"  role="tab" data-toggle="tab">Abilities</a></li>
-        <li role="presentation"><a href="#settings" onclick="getTraits();" aria-controls="settings" role="tab" data-toggle="tab">Traits</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link active"href="#season" onclick="getStats();" aria-controls="season" role="tab" data-bs-toggle="tab">Season</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" href="#games" onclick="getWeekStats();" aria-controls="games" role="tab" data-bs-toggle="tab">Games</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" href="#abilities" onclick="getAbilities();" aria-controls="abilities"  role="tab" data-bs-toggle="tab">Abilities</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" href="#settings" onclick="getTraits();" aria-controls="settings" role="tab" data-bs-toggle="tab">Traits</a></li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
+        <div role="tabpanel" class="tab-pane active" id="season">
             <div class="row">
                 <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                     <ProgressTemplate>
                         <div style="text-align: center;">
-                            <label class="label label-warning">... LOADING ...</label>
-                            <label class="label label-danger">... LOADING ...</label>
-                            <label class="label label-success">... LOADING ...</label><br />
+                            <label class="badge bg-warning">... LOADING ...</label>
+                            <label class="badge bg-danger">... LOADING ...</label>
+                            <label class="badge bg-success">... LOADING ...</label><br />
                         </div>
                         <br />
                     </ProgressTemplate>
@@ -110,14 +112,17 @@
 
 
         </div>
-        <div role="tabpanel" class="tab-pane" id="profile">
+        
+   
+
+        <div role="tabpanel" class="tab-pane" id="games">
             <div class="row">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server">
                     <ProgressTemplate>
                         <div style="text-align: center;">
-                            <label class="label label-warning">... LOADING ...</label>
-                            <label class="label label-danger">... LOADING ...</label>
-                            <label class="label label-success">... LOADING ...</label><br />
+                            <label class="badge bg-warning">... LOADING ...</label>
+                            <label class="badge bg-danger">... LOADING ...</label>
+                            <label class="badge bg-success">... LOADING ...</label><br />
                         </div>
                         <br />
                     </ProgressTemplate>

@@ -116,7 +116,7 @@ namespace CFMStats.Controls.Records
                     var opponentTeamId = item.Field<int>(item.Field<int>("teamId") == item.Field<int>("awayTeamId") ? "awayTeamId" : "homeTeamId");
                     var opponentTeam = item.Field<string>(item.Field<int>("teamId") != item.Field<int>("awayTeamId") ? "awayTeamName" : "homeTeamName");
 
-                    sbTable.Append($"<td style='text-align:left;'><a href='/BoxScore?id={opponentTeamId}&season={season}&week={week}&type=1'>{opponentTeam}</a></td>");
+                    sbTable.Append($"<td style='text-align:left;'><a href='/BoxScore?id={opponentTeamId}&leagueId={leagueId}&season={season}&week={week}&type=1'>{opponentTeam}</a></td>");
                 }
 
 

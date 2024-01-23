@@ -1,78 +1,50 @@
 ﻿using System;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Web.UI;
 using CFMStats.Classes;
 
 namespace CFMStats.Controls
 {
-    public partial class ucTeamDefense : System.Web.UI.UserControl
+    public partial class ucTeamDefense : UserControl
     {
+        public int iLeagueId { get; set; }
 
-        #region Properties
-        private int _iStageIndex;
-        public int iStageIndex
-        {
-            get { return _iStageIndex; }
-            set { _iStageIndex = value; }
-        }
+        public int iSeason { get; set; }
 
-        private int _iSeason;
-        public int iSeason
-        {
-            get { return _iSeason; }
-            set { _iSeason = value; }
-        }
+        public int iStageIndex { get; set; }
 
-        private int _iWeek;
-        public int iWeek
-        {
-            get { return _iWeek; }
-            set { _iWeek = value; }
-        }
-
-        private int _iLeagueId;
-        public int iLeagueId
-        {
-            get { return _iLeagueId; }
-            set { _iLeagueId = value; }
-        }
-
-        #endregion
-
-        protected void Page_PreRender(object sender, EventArgs e)
-        {
-            BuildTable(iSeason, iWeek);
-        }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
+        public int iWeek { get; set; }
 
         protected void BuildTable(int Season, int Week)
         {
             tblDefenseStats.InnerHtml = string.Empty;
 
-            StoredProc SP = new StoredProc();
+            var SP = new StoredProc();
             SP.Name = "TeamDefense_select";
             SP.DataConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SP.ParameterSet = new System.Data.SqlClient.SqlCommand();
+            SP.ParameterSet = new SqlCommand();
 
             SP.ParameterSet.Parameters.AddWithValue("@stageIndex", iStageIndex);
             SP.ParameterSet.Parameters.AddWithValue("@leagueId", iLeagueId);
             SP.ParameterSet.Parameters.AddWithValue("@seasonIndex", iSeason);
 
             if (iWeek == 99)
+            {
                 SP.ParameterSet.Parameters.AddWithValue("@weekIndex", DBNull.Value);
+            }
             else
+            {
                 SP.ParameterSet.Parameters.AddWithValue("@weekIndex", iWeek);
-            
+            }
 
-            DataSet ds = StoredProc.ShowMeTheData(SP);
+            var ds = StoredProc.ShowMeTheData(SP);
 
-
-            System.Text.StringBuilder sbTable = new System.Text.StringBuilder();
+            var sbTable = new StringBuilder();
 
             sbTable.Append("<table id='tableStats' class='tableDefenseStats tablesorter' >");
 
@@ -102,14 +74,11 @@ namespace CFMStats.Controls
             sbTable.Append("<th data-sorter='true'>Deflections</th>");
             sbTable.Append("<th data-sorter='true'>Tackles</th>");
 
-            sbTable.Append("<th data-sorter='true'>Games</th>"); 
+            sbTable.Append("<th data-sorter='true'>Games</th>");
 
             sbTable.Append("</tr>");
             sbTable.Append("</thead>");
             sbTable.Append("<tbody>");
-
-
-
 
             foreach (DataRow item in ds.Tables[0].Rows)
             {
@@ -139,25 +108,31 @@ namespace CFMStats.Controls
                 sbTable.Append($"<td>{item.Field<int>("defDeflections")}</td>");
                 sbTable.Append($"<td>{item.Field<int>("defTotalTackles")}</td>");
 
-                sbTable.Append($"<td>{item.Field<int>("games")}</td>"); 
-
+                sbTable.Append($"<td>{item.Field<int>("games")}</td>");
 
                 sbTable.Append("</tr>");
             }
+
             sbTable.Append("</tbody>");
             sbTable.Append("</table>");
-
 
             tblDefenseStats.InnerHtml = sbTable.ToString();
         }
 
+        protected void Page_Load(object sender, EventArgs e) { }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            BuildTable(iSeason, iWeek);
+        }
 
         protected void UpdatePanel1_Unload(object sender, EventArgs e)
         {
-            System.Reflection.MethodInfo methodInfo = typeof(ScriptManager).GetMethods(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Where(i => i.Name.Equals("System.Web.UI.IScriptManagerInternal.RegisterUpdatePanel")).First();
-            methodInfo.Invoke(ScriptManager.GetCurrent(Page), new object[] { sender as UpdatePanel });
+            var methodInfo = typeof(ScriptManager).GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Where(i => i.Name.Equals("System.Web.UI.IScriptManagerInternal.RegisterUpdatePanel")).First();
+            methodInfo.Invoke(ScriptManager.GetCurrent(Page), new object[]
+            {
+                sender as UpdatePanel
+            });
         }
-
-
     }
 }

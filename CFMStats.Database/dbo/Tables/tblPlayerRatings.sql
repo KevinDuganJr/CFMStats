@@ -16,7 +16,7 @@
 	[catchRating]               INT NOT NULL, 
 	[cITRating]                 INT NOT NULL, 
 	[confRating]                INT NOT NULL, 
-	[elusiveRating]             INT NOT NULL, 
+	[changeOfDirectionRating]   INT NOT NULL, 
 	[finesseMovesRating]        INT NOT NULL, 
 	[hitPowerRating]            INT NOT NULL, 
 	[impactBlockRating]         INT NOT NULL, 

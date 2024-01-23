@@ -11,7 +11,7 @@
                     Select Two-Factor Authentication Provider:
             <asp:DropDownList runat="server" ID="Providers">
             </asp:DropDownList>
-                    <asp:Button Text="Submit" ID="ProviderSubmit" OnClick="ProviderSubmit_Click" CssClass="btn btn-default" runat="server" />
+                    <asp:Button Text="Submit" ID="ProviderSubmit" OnClick="ProviderSubmit_Click" Cssclass="btn btn-primary" runat="server" />
                 </div>
             </div>
         </section>
@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button Text="Submit" ID="CodeSubmit" OnClick="CodeSubmit_Click" CssClass="btn btn-default" runat="server" />
+                    <asp:Button Text="Submit" ID="CodeSubmit" OnClick="CodeSubmit_Click" Cssclass="btn btn-primary" runat="server" />
                 </div>
             </div>
         </section>

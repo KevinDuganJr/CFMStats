@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Text;
 
@@ -147,17 +148,17 @@ namespace CFMStats.Classes
 
             if (ts.TotalHours >= 24)
             {
-                value = $"{dbDateTime:d-MMM}";
+                value = $"{dbDateTime:d-MMM-yyyy}";
             }
             else
             {
                 if (ts.TotalHours >= 1)
                 {
-                    value = $"{(int) ts.TotalHours}h";
+                    value = $"{(int) ts.TotalHours}h ago";
                 }
                 else
                 {
-                    value = ts.TotalMinutes < 1 ? "now" : $"{(int) ts.TotalMinutes}m";
+                    value = ts.TotalMinutes < 1 ? "now" : $"{(int) ts.TotalMinutes}m ago";
                 }
             }
 
@@ -203,7 +204,7 @@ namespace CFMStats.Classes
 
             var sb = new StringBuilder();
            
-            if (span.Minutes > 0)
+            if (span.TotalMinutes > 0)
             {
                 sb.Append($"{span.Minutes} minutes, ");
             }
@@ -233,6 +234,15 @@ namespace CFMStats.Classes
             }
 
             return dValue;
+        }
+
+        /// <summary>
+        ///     Check if string is an email address
+        /// </summary>
+        public static bool IsStringEmailAddress(string value)
+        {
+            var E = new EmailAddressAttribute();
+            return E.IsValid(value);
         }
 
         public static string RatingLevel(int rating)

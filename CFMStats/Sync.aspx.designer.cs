@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CFMStats {
-    
-    
-    public partial class Sync {
-        
+namespace CFMStats
+{
+
+
+    public partial class Sync
+    {
+
         /// <summary>
         /// btnUpdate control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
+
         /// <summary>
         /// divLeague control.
         /// </summary>
@@ -29,16 +31,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLeague;
-        
-        /// <summary>
-        /// btnDeleteDatabase control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteDatabase;
-        
+
         /// <summary>
         /// btnTeamStandingsUpdate control.
         /// </summary>
@@ -47,7 +40,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnTeamStandingsUpdate;
-        
+
         /// <summary>
         /// btnRosterUpdate control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRosterUpdate;
-        
+
         /// <summary>
         /// btnScheduleUpdate control.
         /// </summary>
@@ -65,7 +58,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnScheduleUpdate;
-        
+
         /// <summary>
         /// ddlWeek control.
         /// </summary>
@@ -74,7 +67,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlWeek;
-        
+
         /// <summary>
         /// btnStatsUpdate control.
         /// </summary>
@@ -83,7 +76,16 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnStatsUpdate;
-        
+
+        /// <summary>
+        /// btnDeleteDatabase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteDatabase;
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// hdnWeek control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnWeek;
-        
+
         /// <summary>
         /// UpdateProgress1 control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-        
+
         /// <summary>
         /// tblResults control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tblResults;
-        
+
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// phUrlHolder control.
         /// </summary>

@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CFMStats.SiteMaster" %>
-<%@ Import Namespace="CFMStats.Classes" %>
 
+<%@ Import Namespace="CFMStats.Classes" %>
 
 <!DOCTYPE html>
 
@@ -21,7 +21,6 @@
 
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,7 +37,6 @@
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
                 <asp:ScriptReference Name="respond" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
@@ -49,75 +47,83 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap.bundle.min.js" />
+
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
-
-        <div class="navbar navbar-default navbar-fixed-top">
-
-            <div class='leagueHeader'>
-                
-            </div>
-
+        <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top py-0">
             <div class="container">
+                <a class="navbar-brand" runat="server" href="~/">CFM Stats</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <ul class="navbar-nav me-auto">
 
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">CFM Stats</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                        <% 
+                            bool isAuthenticated = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+                            if (isAuthenticated)
+                            { %>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Leagues/MyLeagues"><strong>MY LEAGUES</strong></a></li>
+                        <% } %>
 
                         <% if (Helper.IntegerNull(Session["leagueID"]) > 0)
                             {  %>
-                        <li><a href='<%= $"/Schedule?leagueId={Session["leagueID"]}" %>'>Schedule</a></li>
-                        <li><a href='<%= $"/WeekLeaders?leagueId={Session["leagueID"]}" %>'>Week Leaders</a></li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Team<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href='<%= $"/TeamStats?leagueId={Session["leagueID"]}" %>'>Stats</a></li>
-                                <li><a href='<%= $"/TeamRankings?leagueId={Session["leagueID"]}" %>'>Standings</a></li>
-                                <li><a href='<%= $"/TeamSchedule?leagueId={Session["leagueID"]}" %>'>Schedule</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">LEAGUE</a>
+
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href='<%= $"/TeamRankings?leagueId={Session["leagueID"]}" %>'>Standings</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/WeekLeaders?leagueId={Session["leagueID"]}" %>'>Week Leaders</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/Schedule?leagueId={Session["leagueID"]}" %>'>Schedule</a></li>
                             </ul>
                         </li>
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">TEAM</a>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Player<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href='<%= $"/PlayerStats?leagueId={Session["leagueID"]}" %>'>Stats</a></li>
-                                <li><a href='<%= $"/Players?leagueId={Session["leagueID"]}" %>'>Ratings</a></li>
-                                <li><a href='<%= $"/PlayerSalary?leagueId={Session["leagueID"]}" %>'>Salary</a></li>
-                                <li><a href='<%= $"/PlayerRecords?leagueId={Session["leagueID"]}" %>'>Records</a></li>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href='<%= $"/TeamStats?leagueId={Session["leagueID"]}" %>'>Stats</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/TeamSchedule?leagueId={Session["leagueID"]}" %>'>Schedule</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/HowBuilt?leagueId={Session["leagueID"]}" %>'>How Built</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/DraftHistory?leagueId={Session["leagueID"]}" %>'>Draft History</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">PLAYER</a>
+
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href='<%= $"/PlayerStats?leagueId={Session["leagueID"]}" %>'>Stats</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/Players?leagueId={Session["leagueID"]}" %>'>Ratings</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/PlayerSalary?leagueId={Session["leagueID"]}" %>'>Salary</a></li>
+                                <li><a class="dropdown-item" href='<%= $"/PlayerRecords?leagueId={Session["leagueID"]}" %>'>Records</a></li>
                             </ul>
                         </li>
 
                         <%} %>
-                        <li><a href='About'>Help</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href='/About'>HELP</a></li>
                     </ul>
+
                     <asp:LoginView runat="server" ViewStateMode="Disabled" Visible="true">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                                <li><a runat="server" class="btn btn-success my-2 my-sm-0 me-sm-2 btn-sm" href="~/Account/Register">Register</a></li>
+                                <li><a runat="server" class="btn btn-success my-2 my-sm-0 btn-sm" href="~/Account/Login">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><small>Hi</small> <strong><%: Context.User.Identity.GetUserName() %></strong><b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle btn btn-outline-success btn-sm" data-bs-toggle="dropdown"><strong><%: Context.User.Identity.GetUserName() %></strong><b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a runat="server" href="~/Account/ManagePassword">Account</a></li>
-                                        <li><a runat="server" href="~/LeagueSettings">My Leagues</a></li>
+                                        <li><a class="dropdown-item" runat="server" href="~/Account/ManagePassword">Account</a></li>
                                         <li>
-                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                            <asp:LoginStatus class="dropdown-item" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                         </li>
                                     </ul>
                             </ul>
@@ -125,21 +131,21 @@
                     </asp:LoginView>
                 </div>
             </div>
-        </div>
+        </nav>
 
 
         <div class="container-fluid">
 
-
-
             <%--remove body-content to remove horizontal scroll --%>
             <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
 
-
             <hr />
             <footer>
-                <p>&copy; 2017 - <%: DateTime.UtcNow.Year %> CFM Stats</p>
-                Madden 20 and all Madden assets property of EA Sports.
+                &copy; 2017 - <%: DateTime.UtcNow.Year %> CFM Stats
+                <br />
+                Madden 24 and all Madden assets property of EA Sports.<br />
+                Version: 2023.8.16.1<br />
+                <%--<a href="/Contact.aspx">Contact Us</a> &nbsp;&nbsp;|&nbsp;&nbsp;--%> <a href="/ChangeLog.aspx">Change Log</a>
             </footer>
         </div>
 
@@ -148,13 +154,14 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-16870834-5"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YN8X97F8TB"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'UA-16870834-5');
+    gtag('config', 'G-YN8X97F8TB');
 </script>
 
 

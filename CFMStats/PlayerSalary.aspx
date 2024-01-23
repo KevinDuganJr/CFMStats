@@ -5,83 +5,61 @@
 
 
     <div class="row">
+        <div class="col-xs-6 col-sm-4">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon0">Team</span>
+                <asp:DropDownList ID="ddlLeagueTeams" runat="server" CssClass="form-control form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPositionGroup_SelectedIndexChanged"></asp:DropDownList>
 
-        <div class="col-sm-4 col-lg-4">
+                <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-primary" onclick="Previous(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnPrevTeam">
+                    <span class="fas fa-chevron-left"></span>
+                </button>
 
-            <div class="input-group input-group-sm">
-                <asp:DropDownList ID="ddlLeagueTeams" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPositionGroup_SelectedIndexChanged"></asp:DropDownList>
-
-                <span class="input-group-btn">
-                    <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-default" onclick="Previous(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnPrevTeam">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </button>
-
-                    <button type="button" class="btn btn-default" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnNextTeam">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button>
-                </span>
+                <button type="button" class="btn btn-primary" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnNextTeam">
+                    <span class="fas fa-chevron-right"></span>
+                </button>
             </div>
-
         </div>
 
-        <div class="visible-xs">
-            <br />
-        </div>
+        <div class="col-xs-6 col-sm-4">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon2">Position</span>
+                <asp:DropDownList ID="ddlPositionGroup" runat="server" CssClass="form-control form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPositionGroup_SelectedIndexChanged"></asp:DropDownList>
 
-        <div class="col-sm-4 col-lg-4">
+                <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-primary" onclick="Previous(this,'<%= ddlPositionGroup.ClientID %>');" id="btnPrevStatus">
+                    <span class="fas fa-chevron-left"></span>
+                </button>
 
-            <div class="input-group input-group-sm">
-                <asp:DropDownList ID="ddlPositionGroup" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPositionGroup_SelectedIndexChanged"></asp:DropDownList>
-
-                <span class="input-group-btn">
-                    <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-default" onclick="Previous(this,'<%= ddlPositionGroup.ClientID %>');" id="btnPrevStatus">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </button>
-
-                    <button type="button" class="btn btn-default" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlPositionGroup.ClientID %>');" id="btnNextStatus">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button>
-                </span>
+                <button type="button" class="btn btn-primary" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlPositionGroup.ClientID %>');" id="btnNextStatus">
+                    <span class="fas fa-chevron-right"></span>
+                </button>
             </div>
-
         </div>
 
-        <div class="visible-xs">
-            <br />
-        </div>
-
-        <div class="col-sm-4 col-lg-4">
+        <div class="col-xs-6 col-sm-4">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                    <div class="form-horizontal" role="form">
-                        <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-3">Cap Space</label>
-                            <div class="col-sm-9">
-                                <asp:Label ID="lblCapSpace" runat="server" CssClass="form-control" Text=""></asp:Label>
-                            </div>
-                        </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text bg-secondary" id="basic-addon3">Cap Space</span>
+                        <asp:Label ID="lblCapSpace" runat="server" CssClass="form-control" placeholder="No Team Selected" Text="" type="text"></asp:Label>
                     </div>
-
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="ddlLeagueTeams" EventName="SelectedIndexChanged" />
                     <asp:AsyncPostBackTrigger ControlID="ddlPositionGroup" EventName="SelectedIndexChanged" />
                 </Triggers>
             </asp:UpdatePanel>
-
         </div>
-
     </div>
-    <br />
+
     <div class="row">
         <div class="col-sm-12">
 
             <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                 <ProgressTemplate>
                     <div style="text-align: center;">
-                        <label class="label label-warning">... LOADING ...</label>
-                        <label class="label label-danger">... LOADING ...</label>
-                        <label class="label label-success">... LOADING ...</label><br />
+                        <label class="badge bg-warning">... LOADING ...</label>
+                        <label class="badge bg-danger">... LOADING ...</label>
+                        <label class="badge bg-success">... LOADING ...</label><br />
                     </div>
                     <br />
                 </ProgressTemplate>
@@ -94,18 +72,23 @@
                             <div id="tablePlayers" runat="server" visible="true"></div>
                         </div>
 
-                        <div class="pager">
-                            <img src='Content\\tablesorter\\images\\first.png' class='first' />
-                            <img src='Content\\tablesorter\\images\\prev.png' class='prev' />
-                            <span class='pagedisplay' data-pager-output-filtered='{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows'></span>
-                            <img src='Content\\tablesorter\\images\\next.png' class='next' />
-                            <img src='Content\\tablesorter\\images\\last.png' class='last' />
-                            <select class="pagesize" title="Select page size">
-                                <option selected="selected" value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="all">all</option>
-                            </select>
-                            <select class="gotoPage" title="Select page number"></select>
+                        <div class="d-flex justify-content-center mt-2">
+                            <ul class="pagination pagination pagination-sm pager">
+                                <li class="page-item"><a class="page-link first" href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                <li class="page-item"><a class="page-link prev" href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link disabled" href="#">
+                                        <span class="page-item pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link next" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link last" href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                <select class="pagesize" title="Select page size">
+                                    <option selected="selected" value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="all">all</option>
+                                </select>
+                                <select class="gotoPage" title="Select page number"></select>
+                            </ul>
                         </div>
 
                     </div>
@@ -120,27 +103,36 @@
     </div>
 
 
-
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h4 class="modal-title">Development</h4>
                 </div>
                 <div class="modal-body">
-                    <h3><strong>Slow</strong></h3>
+                    <h3>
+                        <strong>Slow</strong>
+                    </h3>
                     will return Slow, Normal, Quick and Superstar players<br />
-                    <h3><strong>Normal</strong></h3>
+                    <h3>
+                        <strong>Normal</strong>
+                    </h3>
                     will return Normal, Quick and Superstar players<br />
-                    <h3><strong>Quick</strong></h3>
+                    <h3>
+                        <strong>Quick</strong>
+                    </h3>
                     will return Quick and Superstar players<br />
-                    <h3><strong>Superstar</strong></h3>
+                    <h3>
+                        <strong>Superstar</strong>
+                    </h3>
                     will return Superstar players<br />
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -148,7 +140,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
 
 
     <%-- tablesorter --%>

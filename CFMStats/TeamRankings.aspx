@@ -5,80 +5,55 @@
 
     <div class="row">
         <div class="col-xs-6 col-sm-3">
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Season</label>
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
-                            <asp:ListItem Text="Regular" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Pre" Value="0"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon1">Season</span>
+                <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
             </div>
         </div>
-
-
 
         <div class="col-xs-6 col-sm-3">
-
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Year</label>
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
-                    </div>
-                </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon2">Type</span>
+                <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
+                    <asp:ListItem Text="Regular" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="Pre" Value="0"></asp:ListItem>
+                </asp:DropDownList>
             </div>
-
         </div>
- 
-
     </div>
-
-
-
     
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
             <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                 <ProgressTemplate>
                     <div style="text-align: center;">
-                        <label class="label label-warning">... LOADING ...</label>
-                        <label class="label label-danger">... LOADING ...</label>
-                        <label class="label label-success">... LOADING ...</label><br />
+                        <label class="badge bg-warning">... LOADING ...</label>
+                        <label class="badge bg-danger">... LOADING ...</label>
+                        <label class="badge bg-success">... LOADING ...</label><br/>
                     </div>
-                    <br />
+                    <br/>
                 </ProgressTemplate>
             </asp:UpdateProgress>
 
             <div class="table-responsive table-bordered-curved">
                 <div id="tableTeamRankings" runat="server" visible="true"></div>
             </div>
-
-
-
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="ddlSeason" EventName="SelectedIndexChanged" />
-            <asp:AsyncPostBackTrigger ControlID="ddlSeasonType" EventName="SelectedIndexChanged" />
+            <asp:AsyncPostBackTrigger ControlID="ddlSeason" EventName="SelectedIndexChanged"/>
+            <asp:AsyncPostBackTrigger ControlID="ddlSeasonType" EventName="SelectedIndexChanged"/>
         </Triggers>
-
     </asp:UpdatePanel>
 
 
-
-     
-
-    <%--<link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet" />--%> 
+    <%--<link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet" />--%>
 
     <%-- tablesorter --%>
-    <link href="../Content/tablesorter/theme.ice.min.css" rel="stylesheet" />
+    <link href="../Content/tablesorter/theme.ice.min.css" rel="stylesheet"/>
     <script src="../Scripts/jquery.tablesorter.min.js"></script>
     <script src="../Scripts/jquery.tablesorter.widgets.min.js"></script>
     <%--<script src="https://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>--%>
-    <link href="../Content/tablesorter/jquery.tablesorter.pager.min.css" rel="stylesheet" />
+    <link href="../Content/tablesorter/jquery.tablesorter.pager.min.css" rel="stylesheet"/>
     <script src="../Scripts/jquery.tablesorter.pager.min.js"></script>
     <%--<script src="https://rawgit.com/Mottie/tablesorter/master/js/widgets/widget-scroller.js"></script>--%>
 

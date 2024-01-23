@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -23,6 +24,8 @@ namespace CFMStats.Classes
 
             try
             {
+                sp.DataConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
                 using (var conn = new SqlConnection(sp.DataConnectionString))
                 {
                     using (var command = new SqlCommand(sp.Name, conn))
@@ -92,6 +95,8 @@ namespace CFMStats.Classes
 
             try
             {
+                SP.DataConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
                 using (var conn = new SqlConnection(SP.DataConnectionString))
                 {
                     using (var command = new SqlCommand(SP.Name, conn))

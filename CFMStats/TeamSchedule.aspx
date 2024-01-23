@@ -1,68 +1,51 @@
 ﻿<%@ Page Title="Team Schedule" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TeamSchedule.aspx.cs" Inherits="CFMStats.TeamSchedule" %>
 
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <style>
-        .ChkBoxClass {
-            font-size: 1.2em;
-            margin: 7px;
-        }
-
-            .ChkBoxClass input {
-                width: 28px;
-                height: 28px;
-                margin-right: 5px;
-            }
-    </style>
-
     <div class="container">
-
         <div class="row">
-            <div class="col-xs-6 col-sm-3">
-                <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control input-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlLeagueTeams_SelectedIndexChanged">
-                    <asp:ListItem Text="Regular" Value="1"></asp:ListItem>
-                    <asp:ListItem Text="Pre" Value="0"></asp:ListItem>
-                </asp:DropDownList>
+            <div class="col-md-4">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text bg-secondary" id="basic-addon1">Season</span>
+                    <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlLeagueTeams_SelectedIndexChanged"></asp:DropDownList>
+                </div>
             </div>
 
-
-            <div class="col-xs-6 col-sm-6">
-                <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control input-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlLeagueTeams_SelectedIndexChanged"></asp:DropDownList>
+            <div class="col-md-4">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text bg-secondary" id="basic-addon2">Type</span>
+                    <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlLeagueTeams_SelectedIndexChanged">
+                        <asp:ListItem Text="Regular" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Pre" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
             </div>
 
-            <div class="col-xs-12 col-sm-3">
-                <div class="visible-xs">
-                    <br />
+            <div class="col-md-4">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text bg-secondary" id="basic-addon3">Team</span>
+                    <asp:DropDownList ID="ddlLeagueTeams" runat="server" CssClass="form-control form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlLeagueTeams_SelectedIndexChanged"></asp:DropDownList>
+
+                    <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-primary" onclick="Previous(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnPrevStatus">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-primary" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnNextStatus">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
-                <div class="input-group input-group-sm">
-                    <asp:DropDownList ID="ddlLeagueTeams" runat="server" CssClass="form-control input-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlLeagueTeams_SelectedIndexChanged"></asp:DropDownList>
-
-                    <span class="input-group-btn">
-                        <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-default" onclick="Previous(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnPrevStatus">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </button>
-
-                        <button type="button" class="btn btn-default" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlLeagueTeams.ClientID %>');" id="btnNextStatus">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </button>
-                    </span>
-                </div>
-
             </div>
         </div>
 
-        <br />
 
         <div class="row">
             <div class="col-sm-12">
-
                 <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                     <ProgressTemplate>
                         <div style="text-align: center;">
-                            <label class="label label-warning">... LOADING ...</label>
-                            <label class="label label-danger">... LOADING ...</label>
-                            <label class="label label-success">... LOADING ...</label><br />
+                            <label class="badge bg-warning">... LOADING ...</label>
+                            <label class="badge bg-danger">... LOADING ...</label>
+                            <label class="badge bg-success">... LOADING ...</label><br />
                         </div>
                         <br />
                     </ProgressTemplate>
@@ -74,8 +57,6 @@
 
                             <div id="tblSchedule" runat="server" visible="true"></div>
                         </div>
-
-
 
                     </ContentTemplate>
                     <Triggers>
@@ -89,33 +70,6 @@
 
     </div>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Development</h4>
-                </div>
-                <div class="modal-body">
-                    <h3><strong>Slow</strong></h3>
-                    will return Slow, Normal, Quick and Superstar players<br />
-                    <h3><strong>Normal</strong></h3>
-                    will return Normal, Quick and Superstar players<br />
-                    <h3><strong>Quick</strong></h3>
-                    will return Quick and Superstar players<br />
-                    <h3><strong>Superstar</strong></h3>
-                    will return Superstar players<br />
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 
 
 
@@ -369,7 +323,7 @@
 
                     // filter widget: css class applied to the table row containing the
                     // filters & the inputs within that row
-                    filter_cssFilter: "form-control input-sm",
+                    filter_cssFilter: "form-control form-select-sm",
 
                     // filter widget: Customize the filter widget by adding a select
                     // dropdown with content, custom options or custom filter functions

@@ -84,7 +84,7 @@
 
         public int durabilityGrade { get; set; }
 
-        public int elusiveRating { get; set; }
+        public int changeOfDirectionRating { get; set; }
 
         public int experiencePoints { get; set; }
 
@@ -200,13 +200,14 @@
 
         public int rookieYear { get; set; }
 
+        public int rookieRating { get; set; }
+
+
         public int rosterId { get; set; }
 
         public int routeRunDeepRating { get; set; }
 
         public int routeRunMedRating { get; set; }
-
-        public int routeRunRating { get; set; }
 
         public int routeRunShortRating { get; set; }
 

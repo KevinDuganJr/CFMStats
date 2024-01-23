@@ -2,6 +2,8 @@
 {
     public class JSONRosters
     {
+        //https://dugan-760bc.firebaseio.com/data/ps3/5105855/team/757727232/.json
+
         public class Rootobject
         {
             public Rosterinfolist[] rosterInfoList { get; set; }
@@ -43,6 +45,8 @@
 
             public int catchRating { get; set; }
 
+            public int changeOfDirectionRating { get; set; }
+
             public int cITRating { get; set; }
 
             public int clutchTrait { get; set; }
@@ -82,8 +86,6 @@
             public int dropOpenPassTrait { get; set; }
 
             public int durabilityGrade { get; set; }
-
-            public int elusiveRating { get; set; }
 
             public int experiencePoints { get; set; }
 
@@ -201,6 +203,8 @@
 
             public int routeRunMedRating { get; set; }
 
+            public int routeRunRating { get; set; }
+
             public int routeRunShortRating { get; set; }
 
             public int runBlockFinesseRating { get; set; }
@@ -209,13 +213,13 @@
 
             public int runBlockRating { get; set; }
 
-            public int routeRunRating { get; set; }
-
             public int runStyle { get; set; }
 
             public int scheme { get; set; }
 
             public int sensePressureTrait { get; set; }
+
+            public Signatureslotlist[] signatureSlotList { get; set; }
 
             public int sizeGrade { get; set; }
 
@@ -269,27 +273,30 @@
 
             public int yearsPro { get; set; }
 
-            public Signatureslotlist[] signatureSlotList { get; set; }
-
             public int zoneCoverRating { get; set; }
         }
-
-    
 
         public class Signatureslotlist
         {
             public bool isEmpty { get; set; }
+
             public bool locked { get; set; }
+
             public int ovrThreshold { get; set; }
+
             public Signatureability signatureAbility { get; set; }
         }
 
         public class Signatureability
         {
             public string signatureActivationDescription { get; set; }
+
             public string signatureDeactivationDescription { get; set; }
+
             public string signatureDescription { get; set; }
+
             public int signatureLogoId { get; set; }
+
             public string signatureTitle { get; set; }
         }
     }

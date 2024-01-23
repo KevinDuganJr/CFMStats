@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CFMStats {
-    
-    
-    public partial class PlayerStats {
-        
+namespace CFMStats
+{
+
+
+    public partial class PlayerStats
+    {
+
         /// <summary>
         /// ddlStatSelector control.
         /// </summary>
@@ -20,16 +22,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStatSelector;
-        
-        /// <summary>
-        /// ddlSeasonType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeasonType;
-        
+
         /// <summary>
         /// ddlSeason control.
         /// </summary>
@@ -38,7 +31,16 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeason;
-        
+
+        /// <summary>
+        /// ddlSeasonType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeasonType;
+
         /// <summary>
         /// ddlWeek control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlWeek;
-        
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// UpdateProgress1 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-        
+
         /// <summary>
         /// phStatHolder control.
         /// </summary>

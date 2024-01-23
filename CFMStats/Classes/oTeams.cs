@@ -34,8 +34,11 @@ namespace CFMStats.Classes
             SP.ParameterSet.Parameters.AddWithValue("@divisionName", t.divisionName);
             SP.ParameterSet.Parameters.AddWithValue("@netPts", t.netPts);
             SP.ParameterSet.Parameters.AddWithValue("@offPassYds", t.offPassYds);
+            SP.ParameterSet.Parameters.AddWithValue("@offPassYdsRank", t.offPassYdsRank);
             SP.ParameterSet.Parameters.AddWithValue("@offRushYds", t.offRushYds);
+            SP.ParameterSet.Parameters.AddWithValue("@offRushYdsRank", t.offRushYdsRank);
             SP.ParameterSet.Parameters.AddWithValue("@offTotalYds", t.offTotalYds);
+            SP.ParameterSet.Parameters.AddWithValue("@offTotalYdsRank", t.offTotalYdsRank);
             SP.ParameterSet.Parameters.AddWithValue("@playoffStatus", t.playoffStatus);
             SP.ParameterSet.Parameters.AddWithValue("@prevRank", t.prevRank);
             SP.ParameterSet.Parameters.AddWithValue("@ptsAgainst", t.ptsAgainst);

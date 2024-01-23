@@ -1,156 +1,105 @@
 ﻿<%@ Page Title="Player Stats" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="PlayerStats.aspx.cs" Inherits="CFMStats.PlayerStats" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    
+
     <div class="row">
-
         <div class="col-xs-6 col-sm-3">
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Player</label>
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="ddlStatSelector" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
-                            <asp:ListItem Text="Passing Stats" Value="passing"></asp:ListItem>
-                            <asp:ListItem Text="Rushing Stats" Value="rushing"></asp:ListItem>
-                            <asp:ListItem Text="Receiving Stats" Value="receiving"></asp:ListItem>
-                            <asp:ListItem Text="Defense Stats" Value="defense"></asp:ListItem>
-                            <asp:ListItem Text="Kicking Stats" Value="kicking"></asp:ListItem>
-                            <asp:ListItem Text="Punting Stats" Value="punting"></asp:ListItem>
-                        </asp:DropDownList>
-
-                    </div>
-                </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon0">Stat</span>
+                <asp:DropDownList ID="ddlStatSelector" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
+                    <asp:ListItem Text="Passing Stats" Value="passing"></asp:ListItem>
+                    <asp:ListItem Text="Rushing Stats" Value="rushing"></asp:ListItem>
+                    <asp:ListItem Text="Receiving Stats" Value="receiving"></asp:ListItem>
+                    <asp:ListItem Text="Defense Stats" Value="defense"></asp:ListItem>
+                    <asp:ListItem Text="Kicking Stats" Value="kicking"></asp:ListItem>
+                    <asp:ListItem Text="Punting Stats" Value="punting"></asp:ListItem>
+                </asp:DropDownList>
             </div>
         </div>
 
         <div class="col-xs-6 col-sm-3">
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Season</label>
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
-                            <asp:ListItem Text="Regular" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Pre" Value="0"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon1">Season</span>
+                <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
             </div>
         </div>
 
         <div class="col-xs-6 col-sm-3">
-
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Year</label>
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="ddlSeason" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
-                    </div>
-                </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon2">Type</span>
+                <asp:DropDownList ID="ddlSeasonType" runat="server" CssClass="form-control form-select form-select-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
+                    <asp:ListItem Text="Regular" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="Pre" Value="0"></asp:ListItem>
+                </asp:DropDownList>
             </div>
-
         </div>
 
         <div class="col-xs-6 col-sm-3">
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Week</label>
-                    <div class="col-sm-9">
-                        <div class="input-group input-group-sm">
-                            <asp:DropDownList ID="ddlWeek" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
-                                <asp:ListItem Text="All" Value="99"></asp:ListItem>
-                                <asp:ListItem Text="1" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="2" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="3" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="4" Value="3"></asp:ListItem>
-                                <asp:ListItem Text="5" Value="4"></asp:ListItem>
-                                <asp:ListItem Text="6" Value="5"></asp:ListItem>
-                                <asp:ListItem Text="7" Value="6"></asp:ListItem>
-                                <asp:ListItem Text="8" Value="7"></asp:ListItem>
-                                <asp:ListItem Text="9" Value="8"></asp:ListItem>
-                                <asp:ListItem Text="10" Value="9"></asp:ListItem>
-                                <asp:ListItem Text="11" Value="10"></asp:ListItem>
-                                <asp:ListItem Text="12" Value="11"></asp:ListItem>
-                                <asp:ListItem Text="13" Value="12"></asp:ListItem>
-                                <asp:ListItem Text="14" Value="13"></asp:ListItem>
-                                <asp:ListItem Text="15" Value="14"></asp:ListItem>
-                                <asp:ListItem Text="16" Value="15"></asp:ListItem>
-                                <asp:ListItem Text="17" Value="16"></asp:ListItem>
-                                <asp:ListItem Text="Wild Card" Value="17"></asp:ListItem>
-                                <asp:ListItem Text="Divisional" Value="18"></asp:ListItem>
-                                <asp:ListItem Text="Conference" Value="19"></asp:ListItem>
-                                <asp:ListItem Text="Super Bowl" Value="21"></asp:ListItem>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon3">Week</span>
+                <asp:DropDownList ID="ddlWeek" runat="server" CssClass="form-control form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged"></asp:DropDownList>
 
-                            </asp:DropDownList>
+                <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-primary" onclick="Previous(this,'<%= ddlWeek.ClientID %>');" id="btnPrevWeek">
+                    <span class="fas fa-chevron-left"></span>
+                </button>
 
-                            <span class="input-group-btn">
-                                <button type="button" name="btnPrevStatus" value="Previous" class="btn btn-default" onclick="Previous(this,'<%= ddlWeek.ClientID %>');" id="btnPrevWeek">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                </button>
-
-                                <button type="button" class="btn btn-default" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlWeek.ClientID %>');" id="btnNextWeek">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </button>
-                            </span>
-
-                        </div>
-                    </div>
-                </div>
+                <button type="button" class="btn btn-primary" name="btnNextStatus" value="Next" onclick="Next(this,'<%= ddlWeek.ClientID %>');" id="btnNextWeek">
+                    <span class="fas fa-chevron-right"></span>
+                </button>
             </div>
         </div>
-
-        <div class="col-sm-1"></div>
-
     </div>
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
             <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                 <ProgressTemplate>
                     <div style="text-align: center;">
-                        <label class="label label-warning">... LOADING ...</label>
-                        <label class="label label-danger">... LOADING ...</label>
-                        <label class="label label-success">... LOADING ...</label><br />
+                        <label class="badge bg-warning">... LOADING ...</label>
+                        <label class="badge bg-danger">... LOADING ...</label>
+                        <label class="badge bg-success">... LOADING ...</label><br/>
                     </div>
-                    <br />
+                    <br/>
                 </ProgressTemplate>
             </asp:UpdateProgress>
 
             <div class="table-responsive table-bordered-curved">
                 <asp:PlaceHolder ID="phStatHolder" runat="server"></asp:PlaceHolder>
             </div>
-            <div class="pager">
-                <img src='Content\\tablesorter\\images\\first.png' class='first' />
-                <img src='Content\\tablesorter\\images\\prev.png' class='prev' />
-                <span class='pagedisplay' data-pager-output-filtered='{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows'></span>
-                <img src='Content\\tablesorter\\images\\next.png' class='next' />
-                <img src='Content\\tablesorter\\images\\last.png' class='last' />
-                <select class="pagesize" title="Select page size">
-                    <option selected="selected" value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="all">all</option>
-                </select>
-                <select class="gotoPage" title="Select page number"></select>
+            <div class="d-flex justify-content-center mt-2">
+                <ul class="pagination pagination pagination-sm pager">
+                    <li class="page-item"><a class="page-link first" href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li class="page-item"><a class="page-link prev" href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                    <li class="page-item"><a class="page-link disabled" href="#">
+                            <span class="page-item pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link next" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li class="page-item"><a class="page-link last" href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                    <select class="pagesize" title="Select page size">
+                        <option selected="selected" value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="all">all</option>
+                    </select>
+                    <select class="gotoPage" title="Select page number"></select>
+                </ul>
             </div>
-
-
 
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="ddlSeason" EventName="SelectedIndexChanged" />
-            <asp:AsyncPostBackTrigger ControlID="ddlWeek" EventName="SelectedIndexChanged" />
-            <asp:AsyncPostBackTrigger ControlID="ddlStatSelector" EventName="SelectedIndexChanged" />
+            <asp:AsyncPostBackTrigger ControlID="ddlSeason" EventName="SelectedIndexChanged"/>
+            <asp:AsyncPostBackTrigger ControlID="ddlWeek" EventName="SelectedIndexChanged"/>
+            <asp:AsyncPostBackTrigger ControlID="ddlStatSelector" EventName="SelectedIndexChanged"/>
         </Triggers>
 
     </asp:UpdatePanel>
 
 
     <%-- tablesorter --%>
-    <link href="../Content/tablesorter/theme.ice.min.css" rel="stylesheet" />
+    <link href="../Content/tablesorter/theme.ice.min.css" rel="stylesheet"/>
     <script src="../Scripts/jquery.tablesorter.min.js"></script>
     <script src="../Scripts/jquery.tablesorter.widgets.min.js"></script>
-    <link href="../Content/tablesorter/jquery.tablesorter.pager.min.css" rel="stylesheet" />
+    <link href="../Content/tablesorter/jquery.tablesorter.pager.min.css" rel="stylesheet"/>
     <script src="../Scripts/jquery.tablesorter.pager.min.js"></script>
     <%--<script src="../Scripts/jquery.stickytableheaders.min.js"></script>--%>
 
@@ -160,7 +109,7 @@
 
 
             var ddlNumbers = document.getElementById(obj1);
-            var options = ddlNumbers.getElementsByTagName("option")
+            var options = ddlNumbers.getElementsByTagName("option");
             for (var i = 0; i < options.length; i++) {
                 if (options[i].selected) {
                     index = i;
@@ -169,8 +118,7 @@
             index = index + 1;
             if (index >= ddlNumbers.length) {
 
-            }
-            else {
+            } else {
                 ddlNumbers.value = ddlNumbers[index].value;
                 document.getElementById(obj1).onchange();
             }
@@ -184,7 +132,7 @@
             var ddlNumbers = document.getElementById(obj1);
 
 
-            var options = ddlNumbers.getElementsByTagName("option")
+            var options = ddlNumbers.getElementsByTagName("option");
             for (var i = 0; i < options.length; i++) {
                 if (options[i].selected) {
                     index = i;
@@ -192,8 +140,7 @@
             }
             index = index - 1;
             if (index <= -1) {
-            }
-            else {
+            } else {
                 ddlNumbers.value = ddlNumbers[index].value;
                 document.getElementById(obj1).onchange();
             }
@@ -219,8 +166,8 @@
 
         function BindControlEvents() {
             $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
+                $('[data-toggle="tooltip"]').tooltip();
+            });
 
             //var offset = $('.navbar').height();
             //$("html:not(.legacy) table").stickyTableHeaders({ fixedOffset: offset });
@@ -364,7 +311,8 @@
                     // [ "even", "odd" ]
                     zebra: [
                         "ui-widget-content even",
-                        "ui-state-default odd"],
+                        "ui-state-default odd"
+                    ],
 
                     // uitheme widget: * Updated! in tablesorter v2.4 **
                     // Instead of the array of icon class names, this option now
@@ -379,7 +327,8 @@
                     columns: [
                         "primary",
                         "secondary",
-                        "tertiary"],
+                        "tertiary"
+                    ],
 
                     // filter widget: If true, a filter will be added to the top of
                     // each table column.
@@ -387,7 +336,7 @@
 
                     // filter widget: css class applied to the table row containing the
                     // filters & the inputs within that row
-                    filter_cssFilter: "form-control input-sm",
+                    filter_cssFilter: "form-control form-select-sm",
 
                     // filter widget: Customize the filter widget by adding a select
                     // dropdown with content, custom options or custom filter functions
@@ -435,7 +384,8 @@
 
                 // *** CALLBACKS ***
                 // function called after tablesorter has completed initialization
-                initialized: function (table) { },
+                initialized: function (table) {
+                },
 
                 // *** CSS CLASS NAMES ***
                 tableClass: 'tablesorter',
@@ -532,7 +482,6 @@
                 cssDisabled: 'disabled'
 
             });
-
 
 
         }

@@ -9,6 +9,8 @@ CREATE PROCEDURE [dbo].[PlayerRatings_select] @positionGroupID INT,
                                               @developmentId   INT, 
                                               @playerId        INT = NULL,                                               
                                               @playerAge       INT, 
+                                              @onPracticeSquad BIT, 
+                                              @yearsPro        INT,
                                               @leagueId        INT
 AS
     BEGIN
@@ -97,7 +99,7 @@ AS
                pr.catchRating, 
                pr.cITRating, 
                pr.confRating, 
-               pr.elusiveRating, 
+               pr.changeOfDirectionRating, 
                pr.finesseMovesRating, 
                pr.hitPowerRating, 
                pr.impactBlockRating, 
@@ -159,7 +161,9 @@ AS
 			--	AND r.leagueId = pt.leagueId
 
         WHERE positionGroupID BETWEEN @positionGroupID AND @endPositionGroupID
-              AND pt.devTrait >= @developmentId
+              AND isOnPracticeSquad BETWEEN @onPracticeSquad AND 1
+			  AND pt.devTrait >= @developmentId
+			  AND r.yearsPro <= @yearsPro
 			  AND r.teamID BETWEEN @teamId AND @endTeamId
               AND r.playerId BETWEEN @playerId AND @endPlayerId
               AND r.isRetired = 0

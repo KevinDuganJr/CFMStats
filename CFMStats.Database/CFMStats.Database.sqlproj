@@ -509,6 +509,7 @@
     <None Include="Scripts\Player_PlayerGrades.sql" />
     <None Include="Scripts\Player_PlayerContracts.sql" />
     <None Include="Scripts\Create_Foreign_Keys.sql" />
+    <None Include="Scripts\Utilities.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CFMStats.Database.refactorlog" />

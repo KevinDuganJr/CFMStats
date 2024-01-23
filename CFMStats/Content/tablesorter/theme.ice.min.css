@@ -32,69 +32,32 @@
         padding: 4px;
     }
 
-    .tablesorter-ice .tablesorter-header-inner,
-    .tablesorter-ice .tablesorter-header-inner {
-        position: relative;
-        padding: 4px 15px 4px 4px;
-    }
+.tablesorter-ice .header,
+.tablesorter-ice .tablesorter-header {
+	padding: 4px 20px 4px 4px;
+	cursor: pointer;
+/*	background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);*/
+	background-position: center right;
+	background-repeat: no-repeat;
+}
 
-    .tablesorter-ice .header,
-    .tablesorter-ice .tablesorter-header {
-        cursor: pointer;
-    }
-
-        .tablesorter-ice .header i,
-        .tablesorter-ice .tablesorter-header i.tablesorter-icon {
-            width: 18px;
-            height: 10px;
-            position: absolute;
-            right: 2px;
-            top: 50%;
-            margin-top: -10px;
-            /* white (unsorted) double arrow */
-            background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
-            background-repeat: no-repeat;
-            background-position: center right;
-            padding: 4px;
-            white-space: normal;
-        }
-
-    .tablesorter-ice th.headerSortUp,
-    .tablesorter-ice th.tablesorter-headerSortUp,
-    .tablesorter-ice th.headerSortDown,
-    .tablesorter-ice th.tablesorter-headerSortDown {
-        color: #ddd;
-        background-color: #135185;
-        background-image: -moz-linear-gradient(top, #195c93, #0e4776);
-        background-image: -ms-linear-gradient(top, #195c93, #0e4776);
-        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#195c93), to(#0e4776));
-        background-image: -webkit-linear-gradient(top, #195c93, #0e4776);
-        background-image: -o-linear-gradient(top, #195c93, #0e4776);
-        background-image: linear-gradient(to bottom, #195c93, #0e4776);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#195c93', endColorstr='#0e4776',GradientType=0 );
-    }
-
-    .tablesorter-ice .headerSortUp i.tablesorter-icon,
-    .tablesorter-ice .tablesorter-headerSortUp i.tablesorter-icon,
-    .tablesorter-ice .tablesorter-headerAsc i.tablesorter-icon {
-        /* white asc arrow */
-        background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
-    }
-
-    .tablesorter-ice .headerSortDown i.tablesorter-icon,
-    .tablesorter-ice .tablesorter-headerSortDown i.tablesorter-icon,
-    .tablesorter-ice .tablesorter-headerDesc i.tablesorter-icon {
-        /* white desc arrow */
-        background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
-    }
-
-    .tablesorter-ice thead .sorter-false {
-        cursor: default;
-    }
-
-        .tablesorter-ice thead .sorter-false i.tablesorter-icon {
-            display: none;
-        }
+.tablesorter-ice thead .headerSortUp,
+.tablesorter-ice thead .tablesorter-headerSortUp,
+.tablesorter-ice thead .tablesorter-headerAsc {
+	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+	border-bottom: #888 1px solid;
+}
+.tablesorter-ice thead .headerSortDown,
+.tablesorter-ice thead .tablesorter-headerSortDown,
+.tablesorter-ice thead .tablesorter-headerDesc {
+	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+	border-bottom: #888 1px solid;
+}
+.tablesorter-ice thead .sorter-false {
+	background-image: none;
+	cursor: default;
+	padding: 4px;
+}
 
     /* tfoot */
     .tablesorter-ice tbody td,

@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CFMStats.Classes;
+using CFMStats.Services;
 
 namespace CFMStats
 {
@@ -17,6 +18,10 @@ namespace CFMStats
             var seasonIndex = Helper.IntegerNull(ddlSeason.SelectedItem.Value);
             var weekIndex = Helper.IntegerNull(ddlWeek.SelectedItem.Value);
             var leagueId = Helper.IntegerNull(Session["leagueID"]);
+
+            var teams = new TeamService();
+            teams = teams.GetLeagueTeams(leagueId);
+
 
             tableSchedule.InnerHtml = string.Empty;
 
@@ -34,9 +39,9 @@ namespace CFMStats
 
             var sbTable = new StringBuilder();
 
-            var firstColumn = "<div class='col-md-1 col-sm-2 col-xs-3'>";
-            var middleColumn = "<div class='col-md-4 col-sm-3 hidden-xs' style:display: flex;align-items:center;'> ";
-            var lastColumn = "<div class='col-md-1 col-sm-1 col-xs-3'>";
+            var firstColumn = "<div class='col'>";
+            var middleColumn = "<div class='col d-none d-sm-block' style:display: flex;align-items:center;'> ";
+            var lastColumn = "<div class='col'>";
 
             foreach (DataRow item in ds.Tables[0].Rows)
             {
@@ -60,13 +65,15 @@ namespace CFMStats
 
                 // Away Team
                 sbTable.Append(firstColumn);
-                sbTable.Append($"<a href='/BoxScore?id={item.Field<int>("awayTeamId")}&leagueId={leagueId}&season={seasonIndex}&week={weekIndex}&type={stageIndex}'><img class='awayLogo img-responsive' src='/images/team/{item.Field<string>("awayTeam").Replace(" ", string.Empty)}.png' /></a>");
+                sbTable.Append($"<a href='/BoxScore?id={item.Field<int>("awayTeamId")}&leagueId={leagueId}&season={seasonIndex}&week={weekIndex}&type={stageIndex}'><img class='img-fluid img-thumbnail bg-secondary awayLogo' src='/images/team/large/{teams[item.Field<int>("awayTeamId")].logoId}.png' /></a>");
                 sbTable.Append("</div>");
 
                 // Away City
                 sbTable.Append(middleColumn);
-                sbTable.Append($"<div class='teamCity'>{item.Field<string>("awayCity")}</div>");
-                sbTable.Append($"<div class='teamName'>{item.Field<string>("awayTeam")}</div>");
+                var awayPrimaryColor = DecimalToHex(Helper.IntegerNull(item["awayPrimaryColor"]));
+                var awaySecondaryColor = DecimalToHex(Helper.IntegerNull(item["awaySecondaryColor"]));
+                sbTable.Append($"<div style='color:#{awayPrimaryColor};' class='teamCity'>{item.Field<string>("awayCity")}</div>");
+                sbTable.Append($"<div style='color: #{awaySecondaryColor};' class='teamName'>{item.Field<string>("awayTeam")}</div>");
                 sbTable.Append($"<div class='teamUser'>{sAwayUser}</div>");
                 sbTable.Append("</div>");
 
@@ -79,13 +86,15 @@ namespace CFMStats
 
                 // Home Team
                 sbTable.Append(firstColumn);
-                sbTable.Append(string.Format($"<a href='/BoxScore?id={item.Field<int>("homeTeamId")}&leagueId={leagueId}&season={seasonIndex}&week={weekIndex}&type={stageIndex}'><img class='homeLogo img-responsive' src='/images/team/{item.Field<string>("homeTeam").Replace(" ", string.Empty)}.png' /></a>"));
+                sbTable.Append($"<a href='/BoxScore?id={item.Field<int>("homeTeamId")}&leagueId={leagueId}&season={seasonIndex}&week={weekIndex}&type={stageIndex}'><img class='img-fluid img-thumbnail bg-secondary homeLogo' src='/images/team/large/{teams[item.Field<int>("homeTeamId")].logoId}.png' /></a>");
                 sbTable.Append("</div>");
 
                 // Home City
                 sbTable.Append(middleColumn);
-                sbTable.Append($"<div class='teamCity'>{item.Field<string>("homeCity")}</div>");
-                sbTable.Append($"<div class='teamName'>{item.Field<string>("homeTeam")}</div>");
+                var homePrimaryColor = DecimalToHex(Helper.IntegerNull(item["homePrimaryColor"]));
+                var homeSecondaryColor = DecimalToHex(Helper.IntegerNull(item["homeSecondaryColor"]));
+                sbTable.Append($"<div style='color:#{homePrimaryColor};' class='teamCity'>{item.Field<string>("homeCity")}</div>");
+                sbTable.Append($"<div style='color:#{homeSecondaryColor};' class='teamName'>{item.Field<string>("homeTeam")}</div>");
                 sbTable.Append($"<div class='teamUser'>{sHomeUser}</div>");
                 sbTable.Append("</div>");
 
@@ -115,7 +124,7 @@ namespace CFMStats
 
         protected void ddlSeasonType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //  setWeek();
+            //  SetWeek();
         }
 
         protected void ddlWeek_SelectedIndexChanged(object sender, EventArgs e)
@@ -138,11 +147,12 @@ namespace CFMStats
 
             Session["leagueId"] = Helper.StringNull(Request.QueryString["leagueId"]);
 
+            SetWeek();
             BuildSeasonList();
             GetCurrentSeasonWeek();
         }
 
-        protected void setWeek()
+        protected void SetWeek()
         {
             var wks = new oWeeks();
             //switch (ddlSeasonType.SelectedIndex)
@@ -160,10 +170,10 @@ namespace CFMStats
 
             foreach (var item in wks.Values)
             {
-                ddlWeek.Items.Add(new ListItem(item.Text, item.Value.ToString()));
+                ddlWeek.Items.Add(new ListItem(item.Text, item.WeekIndex.ToString()));
             }
 
-            GetCurrentSeasonWeek();
+         //   GetCurrentSeasonWeek();
         }
 
         private void GetCurrentSeasonWeek()
@@ -189,16 +199,49 @@ namespace CFMStats
 
             foreach (DataRow item in ds.Tables[0].Rows)
             {
-                //ddlSeasonType.SelectedIndex = ddlSeasonType.Items.IndexOf(ddlSeasonType.Items.FindByValue(Helper.String_Null(item["seasonType"])));
                 ddlSeason.SelectedIndex = ddlSeason.Items.IndexOf(ddlSeason.Items.FindByValue(Helper.StringNull(item["seasonIndex"])));
 
                 var currentWeek = Helper.IntegerNull(item["weekIndex"]);
                 // if (currentWeek > 0) { currentWeek = currentWeek - 1; }
 
                 ddlWeek.SelectedIndex = ddlWeek.Items.IndexOf(ddlWeek.Items.FindByValue(Helper.StringNull(currentWeek)));
+
+                int stageIndex = Helper.IntegerNull(item["stageIndex"]);
+                ddlSeasonType.SelectedIndex = ddlSeasonType.Items.IndexOf(ddlSeasonType.Items.FindByValue(Helper.StringNull(stageIndex)));
             }
 
             ddlWeek_SelectedIndexChanged(null, null);
+        }
+
+        public static string HexToDec(string hex)
+        {
+            if (hex.Length % 2 == 1)
+            {
+                hex = "0" + hex;
+            }
+
+            byte[] raw = new byte[hex.Length / 2];
+            decimal d = 0;
+            for (int i = 0; i < raw.Length; i++)
+            {
+                raw[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+                d += (decimal) (Math.Pow(256, (raw.Length - 1 - i)) * raw[i]);
+            }
+            return d.ToString();
+            
+        }
+
+        public string DecimalToHex(int colorValue)
+        {
+            int decValue = colorValue;
+
+            // Convert integer 182 as a hex in a string variable
+            string hexValue = decValue.ToString("X");
+
+            // Convert the hex string back to the number
+            int decAgain = int.Parse(hexValue, System.Globalization.NumberStyles.HexNumber);
+
+            return hexValue;
         }
     }
 }

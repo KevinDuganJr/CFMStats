@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CFMStats.Classes;
+using CFMStats.Services;
 
 namespace CFMStats
 {
@@ -136,7 +137,7 @@ namespace CFMStats
                 sbTable.Append($"<td style='text-align:left;' class='{cssPlayerStyle}' ><a  target='_blank' href='/profile?id={item.playerId}'>{item.firstName} {item.lastName}</a></td>");
 
                 sbTable.Append($"<td>{item.age}</td>");
-                sbTable.Append($"<td><small>{traits[item.devTrait].Name}</small></td>");
+                sbTable.Append($"<td class='dev{traits[item.devTrait].Name}'><div style='display:none;'>{traits[item.devTrait].Name}</div></td>");
                 sbTable.Append($"<td>{item.yearsPro}</td>");
 
                 // ratings

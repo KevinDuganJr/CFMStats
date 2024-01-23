@@ -16,7 +16,7 @@ AS
 	   --IF @weekIndex IS NULL
 	   --	BEGIN
 	   --		SET @weekIndex = 0
-	   --		SET @endWeekindex = 16 			
+	   --		SET @endWeekindex = 17 			
 	   --	END
 	   --ELSE
 	   --	SET @endWeekindex = @weekIndex
@@ -27,12 +27,16 @@ AS
 			ta.displayName AS awayTeam, 
 			ta.ovrRating AS awayOvr, 
 			ta.teamId AS awayTeamId, 
+			ta.primaryColor AS awayPrimaryColor,
+			ta.secondaryColor AS awaySecondaryColor,
 			s.awayScore, 
 			th.userName AS homeUser, 
 			th.cityName AS homeCity, 
 			th.displayName AS homeTeam, 
 			th.ovrRating AS homeOvr, 
 			th.teamId AS homeTeamId, 
+			th.primaryColor AS homePrimaryColor,
+			th.secondaryColor AS homeSecondaryColor,
 			s.homeScore
 			FROM 
 				tblSchedule AS s

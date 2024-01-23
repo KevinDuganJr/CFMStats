@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CFMStats {
-    
-    
-    public partial class _Default {
-        
+namespace CFMStats
+{
+
+
+    public partial class _Default
+    {
+
         /// <summary>
         /// hdnLeagueID control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnLeagueID;
-        
+
         /// <summary>
         /// hdnLeagueName control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnLeagueName;
-        
+
         /// <summary>
         /// hdnExportID control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnExportID;
-        
+
         /// <summary>
         /// btnSetDefault control.
         /// </summary>
@@ -47,16 +49,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSetDefault;
-        
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// tblLeagues control.
         /// </summary>
@@ -65,5 +58,14 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tblLeagues;
+
+        /// <summary>
+        /// tblAllLeagues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tblAllLeagues;
     }
 }

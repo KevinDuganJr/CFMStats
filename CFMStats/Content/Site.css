@@ -30,7 +30,9 @@ body {
    will truncate terms that are too long to fit in the left column 
 */
 
-.dl-horizontal dt { white-space: normal; }
+.dl-horizontal dt {
+    white-space: normal;
+}
 
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -39,39 +41,54 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
-input[type="select"] { max-width: 280px; }
+input[type="select"] {
+    max-width: 280px;
+}
 
-footer { text-align: center; }
+footer {
+    text-align: center;
+}
 
 /* Responsive: Portrait tablets and up */
 
 @media screen and (min-width: 768px) {
-    .jumbotron { margin-top: 20px; }
+    .jumbotron {
+        margin-top: 20px;
+    }
 
-    .body-content { padding: 0; }
+    .body-content {
+        padding: 0;
+    }
 }
 
 
-.navbar-nav > li > a, .navbar-brand {
+/*.navbar {
+    min-height: 30px !important;
+}*/
+
+/*.navbar-nav > li > a, .navbar-brand {
     height: 30px;
     padding-bottom: 0 !important;
     padding-top: 5px !important;
 }
 
-.navbar { min-height: 30px !important; }
-
-.navbar-toggle {
-    margin-bottom: 0;
-    margin-top: 7px;
-    padding: 0 0;
-}
+    .navbar-brand{
+        font-size:13px;
+        font-weight: bold;
+    }
+    
+    .navbar-toggle {
+        margin-bottom: 0;
+        margin-top: 7px;
+        padding: 0 0;
+    }
 
 
 .navbar-default .navbar-nav > li > a {
     color: #fff;
     font-size: 1.2em;
 }
-
+*/
 
 /* custom bootstrap */
 
@@ -89,6 +106,15 @@ footer { text-align: center; }
     padding: 1px 5px;
 }
 
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
 /* my custom stuff  */
 
 .leagueName {
@@ -96,24 +122,13 @@ footer { text-align: center; }
     font-size: 1.2em;
     font-weight: bold;
     text-align: left;
-    text-shadow: 1px 1px #f1f1f1;
-    vertical-align: middle;
+    padding-top: 15px;
 }
 
 .exportURL {
     font-family: monospace;
     font-size: 2em;
 }
-
-.leagueHeader {
-    background-color: rgb(85, 109, 132);
-    color: #ffffff;
-    font-family: Tahoma;
-    font-size: 8pt;
-    height: 17px;
-    text-align: center;
-}
-
 
 .injured {
     background-image: url(../images/injury.png);
@@ -129,7 +144,9 @@ footer { text-align: center; }
     background-size: 16px 16px;
 }
 
-.isretired { text-decoration: line-through; }
+.isretired {
+    text-decoration: line-through;
+}
 
 .alert-default {
     -ms-background-repeat: repeat-x;
@@ -162,11 +179,17 @@ footer { text-align: center; }
 
 /* tablesorter overrides*/
 
-.table-bordered { border: 0px solid #222222; }
+.table-bordered {
+    border: 0px solid #222222;
+}
 
-.tablesorter-ice { margin: 0; }
+.tablesorter-ice {
+    margin: 0;
+}
 
-.tablesorter-stickyHeader .tablesorter-filter-row { display: none; }
+.tablesorter-stickyHeader .tablesorter-filter-row {
+    display: none;
+}
 
 /* tables with rounded corners */
 
@@ -175,24 +198,70 @@ footer { text-align: center; }
     border-radius: 4px;
 }
 
-.table-bordered-curved thead tr:last-child th,
-.table-bordered-curved thead tr:last-child td { border-bottom: solid 1px #7b7b7b; }
+    .table-bordered-curved thead tr:last-child th,
+    .table-bordered-curved thead tr:last-child td {
+        border-bottom: solid 1px #7b7b7b;
+    }
 
-.table-bordered-curved thead tr th,
-.table-bordered-curved thead tr td {
-    border-bottom: 0;
-    border-right: solid 1px #7b7b7b;
+    .table-bordered-curved thead tr th,
+    .table-bordered-curved thead tr td {
+        border-bottom: 0;
+        border-right: solid 1px #7b7b7b;
+    }
+
+        .table-bordered-curved thead tr th:last-child,
+        .table-bordered-curved thead tr td:last-child {
+            border-right: 0;
+        }
+
+    .table-bordered-curved tbody tr:first-child th,
+    .table-bordered-curved tbody tr:first-child td {
+        border-top: 0;
+    }
+
+    .table-bordered-curved tbody tr td {
+        border-right: solid 1px #7b7b7b;
+        border-top: solid 1px #7b7b7b;
+    }
+
+        .table-bordered-curved tbody tr td:last-child {
+            border-right: 0;
+        }
+
+.devNormal {
+    background-image: url(/images/dev/0.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 24px;
 }
 
-.table-bordered-curved thead tr th:last-child,
-.table-bordered-curved thead tr td:last-child { border-right: 0; }
-
-.table-bordered-curved tbody tr:first-child th,
-.table-bordered-curved tbody tr:first-child td { border-top: 0; }
-
-.table-bordered-curved tbody tr td {
-    border-right: solid 1px #7b7b7b;
-    border-top: solid 1px #7b7b7b;
+.devStar {
+    background-image: url(/images/dev/1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 24px;
 }
 
-.table-bordered-curved tbody tr td:last-child { border-right: 0; }
+.devSuperstar {
+    background-image: url(/images/dev/2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 24px;
+}
+
+.devX-Factor {
+    background-image: url(/images/dev/3.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: left;
+    background-size: 24px;
+}
+th {
+    white-space: nowrap;
+}
+td {
+    white-space: nowrap;
+}

@@ -7,20 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CFMStats {
-    
-    
-    public partial class TeamRankings {
-        
-        /// <summary>
-        /// ddlSeasonType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeasonType;
-        
+namespace CFMStats
+{
+
+
+    public partial class TeamRankings
+    {
+
         /// <summary>
         /// ddlSeason control.
         /// </summary>
@@ -29,7 +22,16 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeason;
-        
+
+        /// <summary>
+        /// ddlSeasonType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeasonType;
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// UpdateProgress1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CFMStats {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-        
+
         /// <summary>
         /// tableTeamRankings control.
         /// </summary>

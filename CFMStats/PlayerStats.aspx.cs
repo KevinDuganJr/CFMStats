@@ -10,7 +10,7 @@ namespace CFMStats
     {
         public void GetDefenseStats(int stageIndex)
         {
-            var uc = (UserControl) Page.LoadControl("~/Controls/ucDefenseStats.ascx");
+            var uc = (UserControl)Page.LoadControl("~/Controls/ucDefenseStats.ascx");
 
             var ClientId = uc.ClientID;
             Page.Controls.Add(uc);
@@ -29,7 +29,7 @@ namespace CFMStats
 
         public void GetKickingStats(int stageIndex)
         {
-            var uc = (UserControl) Page.LoadControl("~/Controls/ucKickingStats.ascx");
+            var uc = (UserControl)Page.LoadControl("~/Controls/ucKickingStats.ascx");
 
             var ClientId = uc.ClientID;
             Page.Controls.Add(uc);
@@ -48,7 +48,7 @@ namespace CFMStats
 
         public void GetPassingStats(int stageIndex)
         {
-            var uc = (UserControl) Page.LoadControl("~/Controls/ucPassingStats.ascx");
+            var uc = (UserControl)Page.LoadControl("~/Controls/ucPassingStats.ascx");
 
             var ClientId = uc.ClientID;
             Page.Controls.Add(uc);
@@ -67,7 +67,7 @@ namespace CFMStats
 
         public void GetPuntingStats(int stageIndex)
         {
-            var uc = (UserControl) Page.LoadControl("~/Controls/ucPuntingStats.ascx");
+            var uc = (UserControl)Page.LoadControl("~/Controls/ucPuntingStats.ascx");
 
             var ClientId = uc.ClientID;
             Page.Controls.Add(uc);
@@ -86,7 +86,7 @@ namespace CFMStats
 
         public void GetReceivingStats(int stageIndex)
         {
-            var uc = (UserControl) Page.LoadControl("~/Controls/ucReceivingStats.ascx");
+            var uc = (UserControl)Page.LoadControl("~/Controls/ucReceivingStats.ascx");
 
             var ClientId = uc.ClientID; // string.Format("{0}{1}", uc.ClientID, DateTime.Now.ToString("fff"));
             Page.Controls.Add(uc);
@@ -105,7 +105,7 @@ namespace CFMStats
 
         public void GetRushingStats(int stageIndex)
         {
-            var uc = (UserControl) Page.LoadControl("~/Controls/ucRushingStats.ascx");
+            var uc = (UserControl)Page.LoadControl("~/Controls/ucRushingStats.ascx");
 
             var ClientId = uc.ClientID;
             Page.Controls.Add(uc);
@@ -124,36 +124,36 @@ namespace CFMStats
 
         protected void ddlWeek_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (phStatHolder.Controls.Count > 0)
+            if(phStatHolder.Controls.Count > 0)
             {
                 phStatHolder.Controls.Clear();
             }
 
             var stageIndex = Helper.IntegerNull(ddlSeasonType.SelectedItem.Value);
 
-            switch (ddlStatSelector.SelectedItem.Value)
+            switch(ddlStatSelector.SelectedItem.Value)
             {
-                case"defense":
+                case "defense":
                     GetDefenseStats(stageIndex);
                     break;
 
-                case"passing":
+                case "passing":
                     GetPassingStats(stageIndex);
                     break;
 
-                case"receiving":
+                case "receiving":
                     GetReceivingStats(stageIndex);
                     break;
 
-                case"rushing":
+                case "rushing":
                     GetRushingStats(stageIndex);
                     break;
 
-                case"kicking":
+                case "kicking":
                     GetKickingStats(stageIndex);
                     break;
 
-                case"punting":
+                case "punting":
                     GetPuntingStats(stageIndex);
                     break;
             }
@@ -161,21 +161,20 @@ namespace CFMStats
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Helper.StringNull(Request.QueryString["leagueId"]).Length == 0)
-            {
-                Response.Redirect("~/");
-            }
-
-            Session["leagueId"] = Helper.StringNull(Request.QueryString["leagueId"]);
-        }
-
-        protected void Page_PreRender(object sender, EventArgs e)
-        {
             if (IsPostBack)
             {
                 return;
             }
 
+            if (Helper.StringNull(Request.QueryString["leagueId"]).Length == 0)
+            {
+                // no league, go back to start
+                Response.Redirect("~/");
+            }
+
+            Session["leagueId"] = Helper.StringNull(Request.QueryString["leagueId"]);
+
+            SetWeek();
             SetSeasonList();
             ddlWeek_SelectedIndexChanged(null, null);
         }
@@ -193,6 +192,21 @@ namespace CFMStats
             foreach (var item in season.Values)
             {
                 ddlSeason.Items.Add(new ListItem(item.Year.ToString(), item.ID.ToString()));
+            }
+        }
+
+        protected void SetWeek()
+        {
+            var wks = new oWeeks();
+            wks = wks.Regular();
+
+            ddlWeek.Items.Clear();
+
+            ddlWeek.Items.Add(new ListItem("All", "99"));
+
+            foreach (var item in wks.Values)
+            {
+                ddlWeek.Items.Add(new ListItem(item.Text, item.WeekIndex.ToString()));
             }
         }
     }

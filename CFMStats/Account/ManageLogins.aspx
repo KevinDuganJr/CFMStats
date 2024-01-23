@@ -28,7 +28,7 @@
                         <td>
                             <asp:Button runat="server" Text="Remove" CommandName="Delete" CausesValidation="false"
                                 ToolTip='<%# "Remove this " + Item.LoginProvider + " login from your account" %>'
-                                Visible="<%# CanRemoveExternalLogins %>" CssClass="btn btn-default" />
+                                Visible="<%# CanRemoveExternalLogins %>" Cssclass="btn btn-primary" />
                         </td>
                     </tr>
                 </ItemTemplate>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.UI;
 using CFMStats.Classes;
 using CFMStats.Controls;
+using CFMStats.Services;
 
 namespace CFMStats
 {
@@ -26,7 +27,7 @@ namespace CFMStats
             var abilitiesCount = 0;
             var isEmptyCount = 0;
             var isLockedCount = 0;
-
+            
             foreach (var ability in abilities.Values)
             {
                 abilitiesCount++;
@@ -41,19 +42,19 @@ namespace CFMStats
                     isLockedCount++;
                 }
 
-                sbTable.Append("<div class='col-sm-12'>");
+                sbTable.Append("<div class='col py-2'>");
 
-                sbTable.Append("<div class='panel panel-default'>");
+                sbTable.Append("<div class='card card-secondary'>");
 
-                sbTable.Append(ability.Title.Length > 0 ? $"<div class='panel-heading'><strong>{ability.Title}</strong></div>" : "<div class='panel-heading'>LOCKED</div>");
+                sbTable.Append(ability.Title.Length > 0 ? $"<div class='card-header'><strong>{ability.Title}</strong></div>" : "<div class='card-heading'>LOCKED</div>");
 
-                sbTable.Append("<div class='panel-body'>");
+                sbTable.Append("<div class='card-body'>");
                 sbTable.Append(ability.Description.Length > 0 ? $"{ability.Description}<br />" : $"Ability is locked until player reaches {ability.OvrThreshold} overall rating.<br />");
-                sbTable.Append($"<span class='label label-success'>{ability.ActivationDescription}</span> <span class='label label-danger'>{ability.DeactivationDescription}</span> ");
+                sbTable.Append($"<span class='badge bg-success'>{ability.ActivationDescription}</span> <span class='badge bg-danger'>{ability.DeactivationDescription}</span> ");
 
                 sbTable.Append("</div>"); // end panel body
 
-                sbTable.Append($"<div class='panel-footer'>Rating Threshold: {ability.OvrThreshold} </div>");
+                sbTable.Append($"<div class='card-footer'>Rating Threshold: {ability.OvrThreshold} </div>");
 
                 sbTable.Append("</div>"); // end panel
 
@@ -85,6 +86,9 @@ namespace CFMStats
         {
             var roster = new oRosters();
 
+            var traits = new DevelopmentTraitService();
+            traits = traits.GetDevelopmentTraits();
+
             var playerId = Helper.IntegerNull(Request.QueryString["id"]);
             if (playerId > 0)
             {
@@ -95,30 +99,13 @@ namespace CFMStats
 
             sbTable.Append("<table  class='table-responsive table-striped'>");
             sbTable.Append("<thead>");
-            sbTable.Append("<tr><th data-filter='true' data-sorter='true'>Trait</th><th data-filter='true' data-sorter='true'>Value</th></tr>");
+            sbTable.Append("<tr><th data-filter='true' data-sorter='true'>Trait</th><th data-filter='true' data-sorter='true'>WeekIndex</th></tr>");
             sbTable.Append("</thead>");
             sbTable.Append("<tbody>");
 
             foreach (var item in roster.Values)
             {
-                var devStatus = "Slow";
-                switch (item.devTrait)
-                {
-                    case 1:
-                        devStatus = "Normal";
-                        break;
-
-                    case 2:
-                        devStatus = "Quick";
-                        break;
-
-                    case 3:
-                        devStatus = "Superstar";
-                        break;
-                }
-                //sbTable.Append(string.Format("<strong><small>Development</small></strong>: {0}<br />", devStatus));
-
-                sbTable.Append($"<tr><td class=\'traitName\'>Development</td> <td class=\'traitValue\'>{devStatus}</td></tr>");
+                sbTable.Append($"<tr><td class=\'traitName\'>Development</td> <td class=\'traitValue\'>{traits[item.devTrait].Name}</td></tr>");
 
                 var playBallInAir = "Conservative";
                 switch (item.playBallTrait)
@@ -131,7 +118,7 @@ namespace CFMStats
                         break;
                 }
 
-                sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Plays Ball In The Air", playBallInAir));
+                sbTable.Append($"<tr><td class='traitName'>{"Plays Ball In The Air"}</td> <td class='traitValue'>{playBallInAir}</td></tr>");
 
                 // Covers The Ball
                 var coversTheBall = "Never";
@@ -150,7 +137,7 @@ namespace CFMStats
                         break;
                 }
 
-                sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Covers The Ball", coversTheBall));
+                sbTable.Append($"<tr><td class='traitName'>{"Covers The Ball"}</td> <td class='traitValue'>{coversTheBall}</td></tr>");
 
                 // LB Style
                 var lbStyle = "Cover LB";
@@ -164,15 +151,13 @@ namespace CFMStats
                         break;
                 }
 
-                // if (item.position.Contains("LB"))
-                // {
+         
                 sbTable.Append($"<tr><td class='traitName'>{"LB Style"}</td> <td class='traitValue'>{lbStyle}</td></tr>");
-                //}
+          
 
                 #region - QB -
 
-                //if (item.position == "QB")
-                //{
+          
                 // QB Style
                 var qbStyle = "Scrambling";
                 switch (item.qBStyleTrait)
@@ -200,7 +185,7 @@ namespace CFMStats
                         qbSensePressure = "Average";
                         break;
                     case 4:
-                        qbSensePressure = "Tell Kevin";
+                        qbSensePressure = "Oblivious";
                         break;
                 }
 
@@ -217,30 +202,26 @@ namespace CFMStats
                         break;
                 }
 
-                //sbTable.Append(string.Format("<strong><small>Forces Passes</small></strong>: {0}<br />", forcePass));
-                sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Forces Passes", forcePass));
+                sbTable.Append($"<tr><td class='traitName'>{"Forces Passes"}</td> <td class='traitValue'>{forcePass}</td></tr>");
 
                 if (item.tightSpiralTrait == 1)
                 {
-                    //sbTable.Append("Throws Tight Spiral<br />");
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Throws Tight Spiral", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Throws Tight Spiral"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Throws Tight Spiral", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Throws Tight Spiral"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 if (item.throwAwayTrait == 1)
                 {
-                    //sbTable.Append("Throws Ball Away<br />");
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Throws Ball Away", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Throws Ball Away"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Throws Ball Away", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Throws Ball Away"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
-                // }
 
                 #endregion
 
@@ -260,86 +241,86 @@ namespace CFMStats
                         break;
                 }
 
-                sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Penalty", penaltyTrait));
+                sbTable.Append($"<tr><td class='traitName'>{"Penalty"}</td> <td class='traitValue'>{penaltyTrait}</td></tr>");
 
                 // clutch
                 if (item.clutchTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Clutch", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Clutch"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Clutch", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Clutch"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // big hitter
                 if (item.bigHitTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Big Hitter", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Big Hitter"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Big Hitter", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Big Hitter"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // catch in traffic
                 if (item.cITRating == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Catches In Traffic", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Catches In Traffic"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Catches In Traffic", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Catches In Traffic"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // feet in bounds
                 if (item.feetInBoundsTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Makes Sideline Catches", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Makes Sideline Catches"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Makes Sideline Catches", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Makes Sideline Catches"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // fight for yards
                 if (item.fightForYardsTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Fights For Extra Yards", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Fights For Extra Yards"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Fights For Extra Yards", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Fights For Extra Yards"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // high motor
                 if (item.highMotorTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "High Motor", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"High Motor"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "High Motor", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"High Motor"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // predict contract
                 if (item.predictTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Contract Predictable", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Contract Predictable"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Contract Predictable", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Contract Predictable"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // spin
                 if (item.dLSpinTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Utilizes Spin Move", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Utilizes Spin Move"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Utilizes Spin Move", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Utilizes Spin Move"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // swim
@@ -355,61 +336,61 @@ namespace CFMStats
                 // bull rush
                 if (item.dLBullRushTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Bull Rush Move", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Bull Rush Move"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Bull Rush Move", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Bull Rush Move"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // drop open passes
                 if (item.dropOpenPassTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Drop Open Passes", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Drop Open Passes"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Drop Open Passes", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Drop Open Passes"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // aggressive catch
                 if (item.hPCatchTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Aggressive Catch", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Aggressive Catch"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Aggressive Catch", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Aggressive Catch"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // possesion catch
                 if (item.posCatchTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Possesssion Catch", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Possesssion Catch"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Possesssion Catch", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Possesssion Catch"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // run after catch
                 if (item.yACCatchTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Run After Catch", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Run After Catch"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Run After Catch", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Run After Catch"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
 
                 // strip ball
                 if (item.stripBallTrait == 1)
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Strips Ball", "Yes"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Strips Ball"}</td> <td class='traitValue'>{"Yes"}</td></tr>");
                 }
                 else
                 {
-                    sbTable.Append(string.Format("<tr><td class='traitName'>{0}</td> <td class='traitValue'>{1}</td></tr>", "Strips Ball", "No"));
+                    sbTable.Append($"<tr><td class='traitName'>{"Strips Ball"}</td> <td class='traitValue'>{"No"}</td></tr>");
                 }
             }
 
@@ -576,6 +557,7 @@ namespace CFMStats
                 Name = "PlayerProfile_select", DataConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, ParameterSet = new SqlCommand()
             };
 
+     
             sp.ParameterSet.Parameters.AddWithValue("@playerId", playerId);
 
             var ds = StoredProc.ShowMeTheData(sp);
@@ -587,8 +569,11 @@ namespace CFMStats
 
             var sbTable = new StringBuilder();
 
-            foreach (DataRow item in ds.Tables[0].Rows)
+            foreach (DataRow item in ds.Tables[0].Rows)                       
             {
+                var teams = new TeamService();
+                teams = teams.GetLeagueTeams(Helper.IntegerNull(item["leagueId"]));
+
                 var feet = Helper.IntegerNull(item["height"]) / 12;
                 var inchesLeft = Helper.IntegerNull(item["height"]) % 12;
 
@@ -611,7 +596,7 @@ namespace CFMStats
 
                 if (Helper.IntegerNull(item["injuryType"]) != 97 && Helper.BooleanNull(item["isActive"]) == false)
                 {
-                    sbTable.Append($"<span class='label label-danger'>INJURED</span> {Helper.StringNull(item["injuryName"])}<br />");
+                    sbTable.Append($"<span class='badge bg-danger'>INJURED</span> {Helper.StringNull(item["injuryName"])}<br />");
                 }
 
                 // if (Helper.Boolean_Null(item["isOnIR"]) == true) { sbTable.Append("Injured Reserve <br />"); }
@@ -630,20 +615,20 @@ namespace CFMStats
                     sbTable.Append("Practice Squad <br />");
                 }
 
-                sbTable.Append($"<span class='label label-success'>Contract</span> ${Helper.IntegerNull(item["contractSalary"]):n0}<br />");
-                sbTable.Append($"<span class='label label-default'>Player Best OVR</span> {Helper.IntegerNull(item["playerBestOVR"])}<br />");
-                sbTable.Append($"<span class='label label-default'>Player Scheme OVR</span> {Helper.IntegerNull(item["playerSchemeOvr"])}<br />");
-                sbTable.Append($"<span class='label label-default'>Team Scheme OVR</span> {Helper.IntegerNull(item["teamSchemeOvr"])}<br />");
+                sbTable.Append($"<span class='badge bg-success'>Contract</span> ${Helper.IntegerNull(item["contractSalary"]):n0}<br />");
+                sbTable.Append($"<span class='badge bg-secondary'>Player Best OVR</span> {Helper.IntegerNull(item["playerBestOVR"])}<br />");
+                sbTable.Append($"<span class='badge bg-secondary'>Player Scheme OVR</span> {Helper.IntegerNull(item["playerSchemeOvr"])}<br />");
+                sbTable.Append($"<span class='badge bg-secondary'>Team Scheme OVR</span> {Helper.IntegerNull(item["teamSchemeOvr"])}<br />");
 
                 sbTable.Append("<br /></div>");
 
                 sbTable.Append("<div class='col-sm-5 col-xs-6'>");
-                sbTable.Append($"<img src='https://madden-assets-cdn.pulse.ea.com/madden20/portraits/256/{Helper.IntegerNull(item["portraitId"])}.png' class='img-circle' alt=''>");
+                sbTable.Append($"<img src='https://madden-assets-cdn.pulse.ea.com/madden24/portraits/256/{Helper.IntegerNull(item["portraitId"])}.png' class='rounded-circle img-thumbnail' alt=''>");
                 sbTable.Append("</div>");
 
                 // team logo
                 sbTable.Append("<div class='col-sm-2 col-xs-6'>");
-                sbTable.Append($"<div style='background-image: url(images/team/{Helper.StringNull(item["displayName"]).Replace(" ", string.Empty)}.png); background-repeat: no-repeat; height: 150px; width: 150px;'></div>");
+                sbTable.Append($"<img src='/images/team/large/{teams[Helper.IntegerNull(item["teamId"])].logoId}.png' alt=''>");                
                 sbTable.Append("</div>");
             }
 

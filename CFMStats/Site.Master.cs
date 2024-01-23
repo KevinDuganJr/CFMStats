@@ -44,10 +44,10 @@ namespace CFMStats
             //// The code below helps to protect against XSRF attacks
             //var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             //Guid requestCookieGuidValue;
-            //if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
+            //if (requestCookie != null && Guid.TryParse(requestCookie.WeekIndex, out requestCookieGuidValue))
             //{
             //    // Use the Anti-XSRF token from the cookie
-            //    _antiXsrfTokenValue = requestCookie.Value;
+            //    _antiXsrfTokenValue = requestCookie.WeekIndex;
             //    Page.ViewStateUserKey = _antiXsrfTokenValue;
             //}
             //else
@@ -59,7 +59,7 @@ namespace CFMStats
             //    var responseCookie = new HttpCookie(AntiXsrfTokenKey)
             //    {
             //        HttpOnly = true,
-            //        Value = _antiXsrfTokenValue
+            //        WeekIndex = _antiXsrfTokenValue
             //    };
             //    if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
             //    {

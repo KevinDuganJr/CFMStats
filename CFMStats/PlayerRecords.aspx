@@ -5,39 +5,29 @@
 
     <div class="row">
 
-        <div class="col-xs-6 col-sm-3">
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Player</label>
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="ddlStatSelector" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlStatSelector_OnSelectedIndexChanged">
-                            <asp:ListItem Text="Passing Stats" Value="passing"></asp:ListItem>
-                            <asp:ListItem Text="Rushing Stats" Value="rushing"></asp:ListItem>
-                            <asp:ListItem Text="Receiving Stats" Value="receiving"></asp:ListItem>
-                            <asp:ListItem Text="Defense Stats" Value="defense"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
+        <div class="col-xs-6 col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon1">Stat</span>
+                <asp:DropDownList ID="ddlStatSelector" runat="server" CssClass="form-control form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlStatSelector_OnSelectedIndexChanged">
+                    <asp:ListItem Text="Passing Stats" Value="passing"></asp:ListItem>
+                    <asp:ListItem Text="Rushing Stats" Value="rushing"></asp:ListItem>
+                    <asp:ListItem Text="Receiving Stats" Value="receiving"></asp:ListItem>
+                    <asp:ListItem Text="Defense Stats" Value="defense"></asp:ListItem>
+                </asp:DropDownList>
             </div>
         </div>
-
-        <div class="col-xs-6 col-sm-3">
-            <div class="form-horizontal" role="form">
-                <div class="form-group form-group-sm">
-                    <label class="control-label col-sm-3">Duration</label>
-                    <div class="col-sm-9">
-                        <asp:DropDownList ID="ddlDuration" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDuration_OnSelectedIndexChanged">
-                            <asp:ListItem Text="Game" Value="game"></asp:ListItem>
-                            <asp:ListItem Text="Season" Value="season"></asp:ListItem>
-                            <asp:ListItem Text="Career" Value="career"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
+        
+        <div class="col-xs-6 col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-secondary" id="basic-addon2">Duration</span>
+                <asp:DropDownList ID="ddlDuration" runat="server" CssClass="form-control form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDuration_OnSelectedIndexChanged">
+                    <asp:ListItem Text="Game" Value="game"></asp:ListItem>
+                    <asp:ListItem Text="Season" Value="season"></asp:ListItem>
+                    <asp:ListItem Text="Career" Value="career"></asp:ListItem>
+                </asp:DropDownList>
             </div>
         </div>
-
     </div>
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -45,9 +35,9 @@
             <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                 <ProgressTemplate>
                     <div style="text-align: center;">
-                        <label class="label label-warning">... LOADING ...</label>
-                        <label class="label label-danger">... LOADING ...</label>
-                        <label class="label label-success">... LOADING ...</label><br />
+                        <label class="badge bg-warning">... LOADING ...</label>
+                        <label class="badge bg-danger">... LOADING ...</label>
+                        <label class="badge bg-success">... LOADING ...</label><br />
                     </div>
                     <br />
                 </ProgressTemplate>

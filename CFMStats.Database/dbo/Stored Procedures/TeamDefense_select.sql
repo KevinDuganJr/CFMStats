@@ -17,7 +17,7 @@ AS
 	   IF @weekIndex IS NULL
 		  BEGIN
 			 SET @weekIndex = 0;
-			 SET @endWeekindex = 16;
+			 SET @endWeekindex = 17;
 	   END;
 	   ELSE
 		  BEGIN

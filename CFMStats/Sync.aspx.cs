@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CFMStats.Classes;
 using CFMStats.Classes.JSON;
+using CFMStats.Services;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace CFMStats
@@ -23,6 +20,8 @@ namespace CFMStats
         private string localFirebaseDataVar { get; set; } = ConfigurationManager.AppSettings["localFirebaseDataVar"];
 
         private string localFirebaseURL { get; set; } = ConfigurationManager.AppSettings["localFirebaseURL"];
+
+        private readonly JsonToObjectService _jsonToObjectService = new JsonToObjectService();
 
         protected void btnDeleteDatabase_OnClick(object sender, EventArgs e)
         {
@@ -79,7 +78,7 @@ namespace CFMStats
 
             var sb = new StringBuilder();
 
-            sb.Append("<table class='table table-condensed table-striped tablesorter'>");
+            sb.Append("<table class='table table-dark table-condensed table-striped tablesorter'>");
             sb.Append("<thead>");
             sb.Append("<tr>");
             sb.Append("<th>Update Task</th>");
@@ -146,17 +145,21 @@ namespace CFMStats
 
             DisplayLeagueName(Helper.IntegerNull(Request.QueryString["league"]));
 
-            CheckFirebaseForWeeklyStats(exportId);
+            HasWeeklyStats(exportId);
 
-            CheckFirebaseForRosters(exportId);
+            HasPlayers(exportId);
 
-            CheckFirebaseForTeamInfo(exportId);
+            HasTeamInfo(exportId);
         }
 
-        private void CheckFirebaseForRosters(string exportId)
+
+        private void HasPlayers(string exportId)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/team/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
+
+            Console.WriteLine(content.Length);
+
 
             if (content == "null")
             {
@@ -167,10 +170,10 @@ namespace CFMStats
             btnRosterUpdate.Visible = true;
         }
 
-        private void CheckFirebaseForTeamInfo(string exportId)
+        private void HasTeamInfo(string exportId)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/standings/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
 
             if (content == "null")
             {
@@ -181,12 +184,10 @@ namespace CFMStats
             btnTeamStandingsUpdate.Visible = true;
         }
 
-        // check the exported Firebase DB 
-
-        private void CheckFirebaseForWeeklyStats(string exportId)
+        private void HasWeeklyStats(string exportId)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
 
             if (content == "null")
             {
@@ -211,7 +212,7 @@ namespace CFMStats
             {
                 var stageIndexType = x.Key;
 
-                var content2 = GetContentsFromUrl($"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{stageIndexType}/.json?shallow=true");
+                var content2 = UrlDataReaderService.GetDataFromUrl($"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{stageIndexType}/.json?shallow=true");
 
                 var weeks = JObject.Parse(content2);
 
@@ -220,7 +221,7 @@ namespace CFMStats
                     var week = Helper.IntegerNull(y.Key);
 
                     var statsUrl = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{stageIndexType}/{week}/passing/.json";
-                    var statsContent = GetContentsFromUrl($"{statsUrl}?shallow=true");
+                    var statsContent = UrlDataReaderService.GetDataFromUrl($"{statsUrl}?shallow=true");
                     if (statsContent != "null")
                     {
                         table.Rows.Add(x.Key, y.Key);
@@ -238,21 +239,21 @@ namespace CFMStats
                 var stageIndexType = Helper.StringNull(row["SeasonType"]);
                 var seasonWeek = Helper.IntegerNull(row["Week"]);
 
-                if (seasonWeek > 17)
+                if (seasonWeek > 18)
                 {
                     var postSeason = string.Empty;
                     switch (seasonWeek)
                     {
-                        case 18:
+                        case 19:
                             postSeason = "Wild Card";
                             break;
-                        case 19:
+                        case 20:
                             postSeason = "Divisional";
                             break;
-                        case 20:
+                        case 21:
                             postSeason = "Conference";
                             break;
-                        case 22:
+                        case 23:
                             postSeason = "Super Bowl";
                             break;
                     }
@@ -276,45 +277,16 @@ namespace CFMStats
             }
         }
 
-        private static T ConvertJsonToClass<T>(string URL)
-        {
-            var json_data = string.Empty;
 
-            using (var webClient = new WebClient())
-            {
-                json_data = webClient.DownloadString(URL);
-            }
 
-            return JsonConvert.DeserializeObject<T>(json_data);
-        }
 
-        private static T ConvertJsonToRotoObject<T>(string url) where T : new()
-        {
-            // https://www.codeproject.com/Tips/397574/Use-Csharp-to-get-JSON-Data-from-the-Web-and-Map-i
-            using (var w = new WebClient())
-            {
-                var json_data = string.Empty;
-                // attempt to download JSON data as a string
-                try
-                {
-                    json_data = w.DownloadString(url);
-                }
-                catch (Exception) { }
-
-                // if string with JSON data is not empty, deserialize it to class and return its instance 
-                return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
-            }
-        }
-
-        // misc 
 
         private void DisplayLeagueName(int leagueId)
         {
             var sp = new StoredProc
             {
                 Name = "League_select",
-                DataConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"]
-                    .ConnectionString,
+                DataConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString,
                 ParameterSet = new SqlCommand()
             };
 
@@ -334,40 +306,7 @@ namespace CFMStats
             }
         }
 
-        // deserializing JSON
 
-        private string GetContentsFromUrl(string url)
-        {
-
-            //var consumeJson = System.IO.File.ReadAllText(url);
-            //var consumedData = JsonConvert.DeserializeObject<JSONDefenseStats>(consumeJson);
-            
-
-            string sContents;
-
-            try
-            {
-                if (url.ToLower().IndexOf("https:", StringComparison.Ordinal) > -1)
-                {
-                    var wc = new WebClient();
-                    var response = wc.DownloadData(url);
-
-                    sContents = Encoding.ASCII.GetString(response);
-                }
-                else
-                {
-                    var sr = new StreamReader(url);
-                    sContents = sr.ReadToEnd();
-                    sr.Close();
-                }
-            }
-            catch
-            {
-                sContents = "unable to connect to server ";
-            }
-
-            return sContents;
-        }
 
         private string GetExportId(int leagueId)
         {
@@ -406,36 +345,13 @@ namespace CFMStats
             return export.ToLower();
         }
 
-        private static async Task<object> PostCallAPI(string url, object jsonObject)
-        {
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
-                    var response = await client.PostAsync(url, content);
-                    if (response != null)
-                    {
-                        var jsonString = await response.Content.ReadAsStringAsync();
-                        return JsonConvert.DeserializeObject<object>(jsonString);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
 
-            return null;
-        }
-
-        //  display table of what was completed
 
         private void ProcessPlayers(string exportId, int leagueId)
         {
             var sb = new StringBuilder();
 
-            sb.Append("<table class='table table-condensed table-striped tablesorter'>");
+            sb.Append("<table class='table table-dark table-condensed table-striped tablesorter'>");
             sb.Append("<thead>");
             sb.Append("<tr>");
             sb.Append("<th>Update Task</th>");
@@ -464,7 +380,7 @@ namespace CFMStats
 
             var sb = new StringBuilder();
 
-            sb.Append("<table class='table table-condensed table-striped tablesorter'>");
+            sb.Append("<table class='table table-dark table-condensed table-striped tablesorter'>");
             sb.Append("<thead>");
             sb.Append("<tr>");
             sb.Append("<th>Update Task</th>");
@@ -496,7 +412,7 @@ namespace CFMStats
 
             var sb = new StringBuilder();
 
-            sb.Append("<table class='table table-condensed table-striped tablesorter'>");
+            sb.Append("<table class='table table-dark table-condensed table-striped tablesorter'>");
             sb.Append("<thead>");
             sb.Append("<tr>");
             sb.Append("<th>Update Task</th>");
@@ -510,13 +426,13 @@ namespace CFMStats
             for (var i = 1; i < 5; i++)
             {
                 UpdateSchedule(exportId, leagueId, "pre", i);
-                UpdateTeamStatsInfo(exportId, leagueId, "pre", i);
+                // UpdateTeamStatsInfo(exportId, leagueId, "pre", i);
             }
 
-            for (var i = 1; i < 23; i++)
+            for (var i = 1; i < 24; i++)
             {
                 UpdateSchedule(exportId, leagueId, "reg", i);
-                UpdateTeamStatsInfo(exportId, leagueId, "reg", i);
+                // UpdateTeamStatsInfo(exportId, leagueId, "reg", i);
             }
 
             sb.Append($"<tr><td>Schedule</td><td>{Helper.TimeElapsed(startTime)}</td></tr>");
@@ -530,13 +446,15 @@ namespace CFMStats
         private void ProcessTeamInfo(string exportId, int leagueId)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/leagueteams/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var team = ConvertJsonToRotoObject<JSONLeagueTeamInfo.Rootobject>(url);
+            //var team = JsonSerializer.DeserializeAsync<JSONLeagueTeamInfo.Rootobject>(content);
+
+            var team = _jsonToObjectService.ReturnJsonObject<JSONLeagueTeamInfo.Rootobject>(url);
 
             if (team == null)
             {
@@ -553,13 +471,13 @@ namespace CFMStats
         private void ProcessTeamStandings(string exportId, int leagueId)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/standings/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var teams = ConvertJsonToRotoObject<MaddenTeamRankings.Rootobject>(url);
+            var teams = _jsonToObjectService.ReturnJsonObject<MaddenTeamRankings.Rootobject>(url);
 
             var update = new oTeams();
             foreach (var item in teams.teamStandingInfoList)
@@ -571,16 +489,16 @@ namespace CFMStats
         private void UpdateDefenseStats(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/defense/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
-                return;
-            } // no data found
+                return; // no data found
+            }
 
-            var stats = ConvertJsonToRotoObject<JSONDefenseStats.Rootobject>(url);
+            var stats = _jsonToObjectService.ReturnJsonObject<JSONDefenseStats.Rootobject>(url);
             if (stats == null)
             {
-                return;
+                return; // no data found
             }
 
             var up = new oStatsDefense();
@@ -602,13 +520,13 @@ namespace CFMStats
         private void UpdateFreeAgents(string exportId, int leagueId)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/freeagents/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var players = ConvertJsonToRotoObject<JSONRosters.Rootobject>(url);
+            var players = _jsonToObjectService.ReturnJsonObject<JSONRosters.Rootobject>(url);
 
             foreach (var player in players.rosterInfoList)
             {
@@ -619,13 +537,13 @@ namespace CFMStats
         private void UpdateKickingStats(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/kicking/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var stats = ConvertJsonToRotoObject<JSONKickingStats.Rootobject>(url);
+            var stats = _jsonToObjectService.ReturnJsonObject<JSONKickingStats.Rootobject>(url);
             if (stats == null)
             {
                 return;
@@ -638,18 +556,16 @@ namespace CFMStats
             }
         }
 
-        // execute updating SQL from Firebase
-
         private void UpdatePassingStats(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/passing/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var stats = ConvertJsonToRotoObject<JSONPassingStats.Rootobject>(url);
+            var stats = _jsonToObjectService.ReturnJsonObject<JSONPassingStats.Rootobject>(url);
             if (stats == null)
             {
                 return;
@@ -664,12 +580,12 @@ namespace CFMStats
 
         private void UpdatePlayers(string exportId, int leagueId)
         {
-            var content = GetContentsFromUrl($"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/team/.json?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/team/.json?shallow=true");
 
             if (content == "null")
             {
-                return;
-            } // no data found
+                return; // no data found
+            }
 
             // set all players to retired and as free agents
             var defaultPlayers = new oRosters();
@@ -682,8 +598,8 @@ namespace CFMStats
             foreach (var x in o)
             {
                 var teamId = x.Key;
-                var URL = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/team/{teamId}/.json";
-                var players = ConvertJsonToClass<JSONRosters.Rootobject>(URL);
+                var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/team/{teamId}/.json";
+                var players = _jsonToObjectService.ReturnJsonObject<JSONRosters.Rootobject>(url);
                 allTeams.Add(players);
             }
 
@@ -693,32 +609,33 @@ namespace CFMStats
                 {
                     DoMyPlayerUpdate(leagueId, player);
                 }
-                
+
             }
 
-            
-        }
 
+        }
 
         private void DoMyPlayerUpdate(int leagueId, JSONRosters.Rosterinfolist player)
         {
             var up = new oRosters();
 
-            var recordSaved = up.UpdatePlayerProfile(leagueId, player);
+            //var recordSaved = up.UpdatePlayerProfile(leagueId, player);
+
+            var recordSaved = up.UpdatePlayer(leagueId, player);
 
             if (recordSaved)
             {
-                up.UpdatePlayerContracts(leagueId, player);
-                up.UpdatePlayerGrades(leagueId, player);
-                up.UpdatePlayerRatings(leagueId, player);
-                up.UpdatePlayerTraits(leagueId, player);
+                //up.UpdatePlayerContracts(leagueId, player);
+                //up.UpdatePlayerGrades(leagueId, player);
+                //up.UpdatePlayerRatings(leagueId, player);
+                //up.UpdatePlayerTraits(leagueId, player);
 
                 if (player.signatureSlotList != null)
                 {
                     UpdateSignatureAbility(leagueId, player.rosterId, player.signatureSlotList);
                 }
             }
-            
+
         }
 
         private void UpdateSignatureAbility(int leagueId, int rosterId, JSONRosters.Signatureslotlist[] abilities)
@@ -734,13 +651,13 @@ namespace CFMStats
         private void UpdatePuntingStats(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/punting/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var stats = ConvertJsonToRotoObject<JSONPuntingStats.Rootobject>(url);
+            var stats = _jsonToObjectService.ReturnJsonObject<JSONPuntingStats.Rootobject>(url);
             if (stats == null)
             {
                 return;
@@ -756,13 +673,13 @@ namespace CFMStats
         private void UpdateReceivingStats(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/receiving/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var stats = ConvertJsonToRotoObject<JSONReceivingStats.Rootobject>(url);
+            var stats = _jsonToObjectService.ReturnJsonObject<JSONReceivingStats.Rootobject>(url);
             if (stats == null)
             {
                 return;
@@ -778,13 +695,13 @@ namespace CFMStats
         private void UpdateRushingStats(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/rushing/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var stats = ConvertJsonToRotoObject<JSONRushingStats.Rootobject>(url);
+            var stats = _jsonToObjectService.ReturnJsonObject<JSONRushingStats.Rootobject>(url);
             if (stats == null)
             {
                 return;
@@ -800,13 +717,13 @@ namespace CFMStats
         private void UpdateSchedule(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/schedules/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var schedule = ConvertJsonToRotoObject<JSONSchedule.Rootobject>(url);
+            var schedule = _jsonToObjectService.ReturnJsonObject<JSONSchedule.Rootobject>(url);
             if (schedule == null)
             {
                 return;
@@ -822,30 +739,31 @@ namespace CFMStats
         private void UpdateTeamRosters(string exportId, int leagueId, string teamId)
         {
             var URL = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/team/{teamId}/.json";
-            var content = GetContentsFromUrl($"{URL}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{URL}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var players = ConvertJsonToClass<JSONRosters.Rootobject>(URL);
+            var players = _jsonToObjectService.ReturnJsonObject<JSONRosters.Rootobject>(URL);
 
             foreach (var player in players.rosterInfoList)
             {
-                DoMyPlayerUpdate(leagueId, player);   
+                DoMyPlayerUpdate(leagueId, player);
             }
         }
 
         private void UpdateTeamStatsInfo(string exportId, int leagueId, string seasonType, int week)
         {
             var url = $"{localFirebaseURL}/{exportId}/{localFirebaseDataVar}/week/{seasonType}/{week}/teamstats/.json";
-            var content = GetContentsFromUrl($"{url}?shallow=true");
+            var content = UrlDataReaderService.GetDataFromUrl($"{url}?shallow=true");
             if (content == "null")
             {
                 return;
             } // no data found
 
-            var stats = ConvertJsonToRotoObject<JSONTeamStats.Rootobject>(url);
+
+            var stats = _jsonToObjectService.ReturnJsonObject<JSONTeamStats.Rootobject>(url);
             if (stats == null)
             {
                 return;
@@ -857,8 +775,6 @@ namespace CFMStats
                 up.UpdateTeamStatsInfo(item, leagueId);
             }
         }
-
-
     }
 }
 

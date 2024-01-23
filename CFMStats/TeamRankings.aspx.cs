@@ -26,8 +26,7 @@ namespace CFMStats
             }
         }
 
-        protected void ddlWeek_SelectedIndexChanged(object sender,
-            EventArgs e)
+        protected void ddlWeek_SelectedIndexChanged(object sender, EventArgs e)
         {
             var stageIndex = Helper.IntegerNull(ddlSeasonType.SelectedItem.Value);
             var seasonIndex = Helper.IntegerNull(ddlSeason.SelectedItem.Value);
@@ -36,8 +35,7 @@ namespace CFMStats
             BuildTeamRankings(seasonIndex, stageIndex, leagueId);
         }
 
-        protected void Page_Load(object sender,
-            EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -96,6 +94,9 @@ namespace CFMStats
 
             sbTable.Append("<th data-sorter='true'>Cap Space</th>");
 
+            sbTable.Append("<th data-sorter='true'>Off Scheme</th>");
+            sbTable.Append("<th data-sorter='true'>Def Scheme</th>");
+
             sbTable.Append("</tr>");
             sbTable.Append("</thead>");
 
@@ -132,12 +133,15 @@ namespace CFMStats
                 sbTable.Append($"<td>{item.Field<int>("netPts")}</td>");
 
                 sbTable.Append($"<td>{item.Field<int>("tODiff")}</td>");
-                sbTable.Append($"<td>{item.Field<int>("injuryCount")}</td>");
+                sbTable.Append($"<td>{Helper.IntegerNull(item["injuryCount"])}</td>");
 
                 sbTable.Append($"<td>{item["AverageAge"]:0.##}</td>");
                 sbTable.Append($"<td>{item["AverageOvr"]:0.##}</td>");
 
                 sbTable.Append($"<td style='text-align:right;'>${item.Field<int>("capRoom") - item.Field<int>("capSpent"):n0}</td>");
+
+                sbTable.Append($"<td>{item.Field<string>("OffensiveScheme")}</td>");
+                sbTable.Append($"<td>{item.Field<string>("DefensiveScheme")}</td>");
 
                 sbTable.Append("</tr>");
             }
@@ -154,7 +158,7 @@ namespace CFMStats
 
             if (ties > 0)
             {
-                double halfWins = ties * .5;
+                var halfWins = ties * .5;
                 wins = wins + halfWins;
             }
 
